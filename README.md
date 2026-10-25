@@ -1,63 +1,113 @@
-# 自动窗帘抬升器 · Automatic Curtain Lifter
+<div align="center">
 
-面向拉珠式卷帘的 12 V 智能升降控制器。采用 **STM32G030C8T6 + DRV8434A + 涂鸦 T1-3S**，配合步进电机和 9 槽珠链轮，实现本地操作、App 百分比定位及上下端点校准。
+# 自动窗帘抬升器
 
-项目仓库：[XJH-Jorhai/automatic-curtain-lifter](https://github.com/XJH-Jorhai/automatic-curtain-lifter)。
+**Automatic Curtain Lifter**
 
-**当前基线：2026-10-25 Product v15。** 本仓库公开开发版源码与设计资料。当前样机功能已验证；提供电气工程、原理图 PDF/SVG、制造文件、实装 BOM、机械 STEP 与 3MF。第三方 SDK 需自行取得，完整新账户复现尚未完成。当前接入平台是涂鸦，米家属于历史调研，尚未正式接入。
+让拉珠卷帘支持本地操作、App 定位与手动端点校准。
 
-## 样机与主板
+STM32G030 · DRV8434A · 涂鸦 T1-3S · 3D 打印结构
 
-<p align="center">
-  <img src="docs/images/prototype-installed.jpg" width="55%" alt="自动窗帘抬升器安装样机实拍：步进电机、黑色打印外壳和本地钮子开关">
-  <img src="docs/images/mainboard-render.png" width="36%" alt="主板正面 PCB 渲染图">
-</p>
+[开始复刻](docs/getting-started.md) · [硬件资料](hardware/release-2026-10-25/README.md) · [涂鸦接入](docs/tuya-design-guide.md) · [全部文档](docs/README.md)
 
-左：作者提供的安装样机实拍。右：主板 PCB 渲染图，用于展示布局，不能据此确认全部器件已经装配；采购与接线以实装 BOM、修改单及引脚表为准。
+<br>
 
-## 已实现的功能
+<img src="docs/images/prototype-installed.jpg" width="680" alt="自动窗帘抬升器安装样机实拍">
 
-- 本地短拨点动，保持 1 秒后自动运行；反向先停，再持续保持换向。
-- App 开/停/关、0–100% 目标定位，目标与当前进度独立显示。
-- 实体按键及 App 手动保存上下端点，边界外按住微调、松手即停。
-- TRQ 负载信号滤波检测、故障与超时停机。
-- EEPROM 双槽校准日志，保存行程和用户上端距物理顶的偏移。
-- 电机启动旋律、调试接口与带进度浮条的烧录入口。
+*安装样机实拍 · 黑色 PLA Pro 外壳与步进电机*
 
-**重启行为：** 保存校准不等于保存可信当前位置。首次需要定位的 App 操作可能先向上寻找物理顶，再到目标；开机本身不会自动运动。设备没有编码器，未知位置的中间进度只是估计显示。
+</div>
 
-## 阅读与复现
+---
 
-| 入口 | 内容 |
-|---|---|
-| [文档总览](docs/README.md) | 当前实现、证据与历史资料分类 |
-| [硬件与机械设计](docs/hardware-design.md) | 电源、驱动、引脚、珠链轮及制造资料状态 |
-| [软件设计](docs/software-design.md) | 状态机、位置参考、TRQ、EEPROM、涂鸦 DP |
-| [构建与使用](docs/getting-started.md) | 依赖、可配置的构建命令、测试、烧录及操作 |
-| [验证状态](docs/validation-status.md) | 已测功能、证据和未验收指标 |
-| [发布准备](docs/release-checklist.md) | 开源文件、许可证、复现及制造包清单 |
-| [发表稿](docs/publication-draft.md) | 项目介绍草案 |
+## 能做什么
 
-Product 源码位于 [firmware/g030_mainboard](firmware/g030_mainboard/)，详细行为见 [PRODUCT.md](firmware/g030_mainboard/PRODUCT.md)。生成的涂鸦 SDK 不随 Git 提交，目前仍需外部取得兼容模板；请先读构建说明，不把克隆成功当作依赖已经齐全。
+在原有拉珠式卷帘上，用步进电机和 9 槽珠链轮实现升降。保留实体开关操作，也可以通过涂鸦 App 控制。
 
-## 仓库结构
+| 本地操作 | App 控制 | 校准与保护 |
+| :--- | :--- | :--- |
+| 短拨点动，保持 1 秒后自动运行 | 开 / 停 / 关与 0–100% 目标定位 | 按键或 App 保存上下端点 |
+| 反向先停，持续保持再换向 | 目标位置与当前进度分开显示 | 边界外按住微调，松手即停 |
+| 电机启动旋律，运动优先 | 长按实体按键进入 AP 配网 | TRQ 检测、故障停机、EEPROM 校准保存 |
 
-| 目录 | 用途 |
-|---|---|
-| `firmware/g030_mainboard/` | 当前产品、诊断构建、测试和 CubeMX 配置 |
-| `firmware/g030_tuya/` | 历史联网台架及产品仍复用的 SDK 移植脚本 |
-| `hardware/` | 电气设计快照、机械模型和实板测试记录 |
-| `docs/` | 当前软硬件文档与编号历史设计资料 |
-| `tools/flash_monitor/` | 烧录浮条及对应 API/CLI |
-| `vendor/` | 第三方资料说明；原始包默认忽略 |
-| `work/`、`tmp/` | 本地构建/临时资料，不作为源码提交 |
+> **当前版本：Product v15 · 公开开发版。** 已完成当前样机功能验证，公开固件源码、电气设计与机械文件。当前接入涂鸦，尚未接入米家。
 
-## 验证与许可
+## 硬件一览
 
-[v15 实板记录](hardware/test-records/2026-10-25-product-v15.md)包含构建、回归、烧录读回和用户验收。待机功耗 ≤100 mW 仍是未完成验收的目标；长期温升、寿命及多种机构适用性不能由单机功能测试推出。
+<table>
+<tr>
+<td width="44%" align="center">
+<img src="docs/images/mainboard-render.png" width="320" alt="主板正面 PCB 渲染图">
+<br><sub>主板正面渲染 · 非实板照片</sub>
+</td>
+<td valign="top">
+<h3>12 V 主板 + 打印结构</h3>
+<p><b>主控</b>　STM32G030C8T6<br>
+<b>驱动</b>　DRV8434A<br>
+<b>联网</b>　涂鸦 T1-3S<br>
+<b>存储</b>　AT24C16C<br>
+<b>PCB</b>　FR4 · 2 层 · 1.6 mm · 1 oz</p>
+<p>外壳使用 Polymaker PLA Pro 黑色，X1 Carbon / 0.4 mm 喷嘴，0.2 mm 层高、2 圈壁。使用 M2.5 / M3 螺钉固定，长度自行选配。</p>
+<p><a href="docs/hardware-design.md">电路与机械设计 →</a><br>
+<a href="hardware/release-2026-10-25/mainboard-schematic.pdf">查看原理图 PDF →</a><br>
+<a href="hardware/mechanical/README.md">STEP 与打印工程 →</a></p>
+</td>
+</tr>
+</table>
 
-自有软件采用 MIT、原创硬件采用 CERN-OHL-P-2.0、原创文档采用 CC-BY-4.0，范围见 [LICENSING.md](LICENSING.md)。第三方代码、模型、SDK 和资料按各自来源处理，见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。当前资料准备不表示涂鸦云服务或模组固件一并开源。
+渲染图仅用于展示布局，部分器件可能没有三维模型。采购与接线以实装 BOM、修改单及引脚表为准。
 
-当前交付见 [电气制造候选](hardware/release-2026-10-25/README.md)、[外壳 3MF](hardware/mechanical/README.md)、[涂鸦依赖](docs/tuya-setup.md)及[隐私审查](docs/privacy-review.md)。
+## 开始复刻
 
-涂鸦接入方法见 [产品、DP、面板与 MCU 联调设计指南](docs/tuya-design-guide.md)，不随仓库发布涂鸦模组固件。
+**1 · 准备硬件**  
+下载 [电气制造资料](hardware/release-2026-10-25/README.md) 与 [机械 STEP / 3MF](hardware/mechanical/README.md)，按 [引脚表](firmware/g030_mainboard/PINOUT.md) 核对接线。
+
+**2 · 建立自己的涂鸦产品**  
+按 [涂鸦设计指南](docs/tuya-design-guide.md) 配置 DP、面板和模组，准备 [自己的 MCU SDK](docs/tuya-setup.md)。仓库不分发涂鸦模组固件或授权包。
+
+**3 · 构建、测试与校准**  
+跟随 [构建与使用](docs/getting-started.md) 完成工具链配置、主机回归和烧录，确认方向及停止功能后，校准自己的机构。
+
+> **复刻前请读**
+>
+> - **实装阻值：R4 = 30 kΩ、R5 = 21 kΩ、R6 = 4.7 kΩ。** 原生 EDA 图面仍有旧值，必须使用实装 BOM 与修改单。
+> - **重启后的首次 App 定位可能先向上找顶。** 开机本身不会自动运动；设备没有编码器，中间进度可能是估计值。
+> - 完整 Product 构建依赖兼容涂鸦 SDK，第二账户全流程尚未复现。温升、功耗、寿命及多负载适配仍待验证。
+
+## 深入了解
+
+| 想了解什么 | 文档 |
+| :--- | :--- |
+| 状态机、位置参考、EEPROM 与 DP | [软件设计](docs/software-design.md) · [Product 详细行为](firmware/g030_mainboard/PRODUCT.md) |
+| 哪些已经验证、哪些还没验证 | [验证状态](docs/validation-status.md) · [v15 实板记录](hardware/test-records/2026-10-25-product-v15.md) |
+| 项目介绍与后续工作 | [发表稿](docs/publication-draft.md) · [发布状态](docs/release-checklist.md) |
+| 公开内容与隐私处理 | [隐私审查](docs/privacy-review.md) · [文件清单](docs/publication-manifest.json) |
+
+<details>
+<summary><b>仓库目录</b></summary>
+
+```text
+firmware/
+  g030_mainboard/   当前产品源码、测试与 CubeMX 配置
+  g030_tuya/        历史台架及复用的 SDK 移植脚本
+hardware/          电气制造资料、机械模型与实板记录
+docs/              设计、复刻、验证与项目介绍
+tools/flash_monitor/  烧录进度浮条
+vendor/            第三方资料说明
+```
+
+本地 `work/`、`tmp/` 和第三方原始下载包不作为源码交付。
+
+</details>
+
+## 开源许可
+
+**软件 MIT** · **原创硬件 CERN-OHL-P-2.0** · **原创文档 CC-BY-4.0**
+
+具体范围见 [许可说明](LICENSING.md)。第三方代码、珠链轮模型和 SDK 保留各自许可，见 [第三方声明](THIRD_PARTY_NOTICES.md)。
+
+---
+
+<div align="center">
+<sub>Designed & built by XJH-Jorhai</sub>
+</div>
