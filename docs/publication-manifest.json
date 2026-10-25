@@ -103,8 +103,8 @@
     },
     {
       "path": "docs/hardware-design.md",
-      "bytes": 5110,
-      "sha256": "2107b9e891f43a423ca2f08540cf8eb0f454d5a14995607d58b75657d57e6a38"
+      "bytes": 5164,
+      "sha256": "d3fce11fb3112a18894814ac42b55976b4fd6e55df3c0fc24854a68241cbbf21"
     },
     {
       "path": "docs/privacy-review.md",
@@ -118,8 +118,8 @@
     },
     {
       "path": "docs/release-checklist.md",
-      "bytes": 1772,
-      "sha256": "1cec292ece07809a7228374921fc2e8bcc21ffb1d99303b329fcddd75ed007df"
+      "bytes": 1864,
+      "sha256": "d2f1de5824cb8914d279178050b48c0ff2c0706e8ab49cef0f713c38584ac11e"
     },
     {
       "path": "docs/software-design.md",
@@ -1683,13 +1683,13 @@
     },
     {
       "path": "hardware/README.md",
-      "bytes": 1415,
-      "sha256": "5e6abc82254e2c90ea21965214874c51744093b24a68272726cce0ebf034e807"
+      "bytes": 1386,
+      "sha256": "6253271a58c2f516389d71575fc10256e9b538c63148f474a212dafc14e9c8b1"
     },
     {
       "path": "hardware/mechanical/README.md",
-      "bytes": 2087,
-      "sha256": "684ad5e37c3d57e345b410c272830f46cbfbaadb24e0d6b2dbe54f8d460e15a3"
+      "bytes": 2292,
+      "sha256": "91b2562e802c1a14e96196bb705109fa066955e801bedeb7dfe32ceec59525ee"
     },
     {
       "path": "hardware/mechanical/enclosure.3mf",
