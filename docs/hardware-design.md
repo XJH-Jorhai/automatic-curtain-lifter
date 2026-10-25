@@ -68,3 +68,13 @@ PA1 没有 12 V 分压采样，不能用它报告输入电压。TRQ_CNT 是负�
 ## 版本与交付边界
 
 最新导出见 [2026-10-25 电气候选](../hardware/release-2026-10-25/README.md)，包含原生工程、网表、Gerber/钻孔、贴装与 BOM。原生工程仍保留旧 R4/R6 阻值，复刻必须应用随包实装修改单；不能直接按原始 BOM 贴片。可读原理图 PDF 与单页 SVG 已纳入交付；PDF 首页提示实装修改单。板材为 FR4、2 层、1.6 mm、1 oz。
+
+## 样机实拍与 PCB 渲染
+
+![安装样机实拍](images/prototype-installed.jpg)
+
+作者提供的实际安装照片，可见步进电机、黑色打印外壳、本地钮子和珠链。打印、紧固与粘贴安装参数见 [机械说明](../hardware/mechanical/README.md)。
+
+![主板正面 PCB 渲染图](images/mainboard-render.png)
+
+此图为 PCB 渲染，不是实板照片；部分器件可能未显示三维模型。不要从渲染图推断器件缺装或按图识别全部针序，实际连接和改阻以 [电气交付及修改单](../hardware/release-2026-10-25/README.md) 为准。

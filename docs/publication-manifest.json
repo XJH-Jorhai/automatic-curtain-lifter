@@ -43,8 +43,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 3990,
-      "sha256": "11f824c8093683dc3e2f7dfbc4d11bbf485b7b51a28d45bb70aa3b0af0ea9198"
+      "bytes": 4492,
+      "sha256": "bea3a8c54d15a55471e95f89065f6bb3e7dc2a0487e53d50d3dff348e841861b"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -108,23 +108,38 @@
     },
     {
       "path": "docs/hardware-design.md",
-      "bytes": 5216,
-      "sha256": "802172f40a70fceed8cd8c7eab1df5936d44d5775f1f1b11865661b699746870"
+      "bytes": 5814,
+      "sha256": "f407b5aca029b256b7c410026cf17cdca7b04e81cec683cb218a52d787741518"
+    },
+    {
+      "path": "docs/images/README.md",
+      "bytes": 581,
+      "sha256": "fc6262981c49130a3d75529cc66b136817cd1231096ea1f659026971b250b198"
+    },
+    {
+      "path": "docs/images/mainboard-render.png",
+      "bytes": 323199,
+      "sha256": "ae786b0ba1976f3c58fa629c96448a3e467c4b6e39411c7336f18cd918ddb921"
+    },
+    {
+      "path": "docs/images/prototype-installed.jpg",
+      "bytes": 1804242,
+      "sha256": "53e1e98624a1608e1c2e26931221898d1fb4cc6beaaafd9dd78c186a5b5e6c0e"
     },
     {
       "path": "docs/privacy-review.md",
-      "bytes": 2192,
-      "sha256": "8a0fb93af5f5db09d1a077f0f737d1acce95be99cb49da2d4290404577ea2a0c"
+      "bytes": 2598,
+      "sha256": "f70c2f71281d5200a0a9bb575501ce2a95502b7b8577312a86f843e0d1ad19dc"
     },
     {
       "path": "docs/publication-draft.md",
-      "bytes": 3737,
-      "sha256": "f630bd1eb6d6a4019a85d2b1f0f60c4ac9f2ef18d154628898c7866ecab60753"
+      "bytes": 4118,
+      "sha256": "062c48a9e8f74d0ba4298c05a34a7779e9b29233efb5dc9ef962f1557d756388"
     },
     {
       "path": "docs/release-checklist.md",
-      "bytes": 2197,
-      "sha256": "5808e97dd5e05fb59206ff1380c98cb6a9016c79ce690313f2b3ec26e1f02221"
+      "bytes": 2199,
+      "sha256": "59718e235b294362b998cae30047900c7f3e8fef0ccf0a53311e06eec4163d7b"
     },
     {
       "path": "docs/software-design.md",
