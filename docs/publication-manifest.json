@@ -103,13 +103,13 @@
     },
     {
       "path": "docs/hardware-design.md",
-      "bytes": 4886,
-      "sha256": "bbe695e066c9127f5d842941ea0a639b001f11cf103059dc45543c53c03d2bd8"
+      "bytes": 5110,
+      "sha256": "2107b9e891f43a423ca2f08540cf8eb0f454d5a14995607d58b75657d57e6a38"
     },
     {
       "path": "docs/privacy-review.md",
-      "bytes": 1470,
-      "sha256": "c831402da7209d766793eb01233b9b814f9496aca5da5faa7eb989f3f1d19313"
+      "bytes": 1862,
+      "sha256": "320f3c783e6dc280fbc2b116b0f5beecf2ebffc03759b8f30a562b531c5d3d3e"
     },
     {
       "path": "docs/publication-draft.md",
@@ -118,8 +118,8 @@
     },
     {
       "path": "docs/release-checklist.md",
-      "bytes": 1526,
-      "sha256": "95e40f6416f2b45e8ed01ec3cf3ad327f00cc3de801d325382362e8e069db163"
+      "bytes": 1772,
+      "sha256": "1cec292ece07809a7228374921fc2e8bcc21ffb1d99303b329fcddd75ed007df"
     },
     {
       "path": "docs/software-design.md",
@@ -1688,13 +1688,28 @@
     },
     {
       "path": "hardware/mechanical/README.md",
-      "bytes": 967,
-      "sha256": "e88bf19189fcb286028656ec70e8e6f745d105d4e5d3b33b3450ae3af402467c"
+      "bytes": 2087,
+      "sha256": "684ad5e37c3d57e345b410c272830f46cbfbaadb24e0d6b2dbe54f8d460e15a3"
     },
     {
       "path": "hardware/mechanical/enclosure.3mf",
       "bytes": 127943,
       "sha256": "02d1739d2e2d86050a2fd19da03b6543de8471f82fa78a4f7f96aeb10f749c24"
+    },
+    {
+      "path": "hardware/mechanical/壳子.STEP",
+      "bytes": 191486,
+      "sha256": "a176ef582914583bf3943993d4cb13c7c66b7b865c1f534ba972d0077db1abb4"
+    },
+    {
+      "path": "hardware/mechanical/架子.STEP",
+      "bytes": 50624,
+      "sha256": "1439c54c8ff29f73c9237a418857b36dd98a2aab0a42844c5674978086a3d5bd"
+    },
+    {
+      "path": "hardware/mechanical/盖子.STEP",
+      "bytes": 196488,
+      "sha256": "c90d154894a49bcb21bbd605c3f0e7af9c5308b894fb5746a503a6b54ea8a011"
     },
     {
       "path": "hardware/release-2026-10-25/README.md",

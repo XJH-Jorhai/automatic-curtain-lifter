@@ -63,7 +63,7 @@ PA1 没有 12 V 分压采样，不能用它报告输入电压。TRQ_CNT 是负�
 
 珠心圆直径按 `珠心距 / sin(180° / 槽数)` 计算。9 槽结构降低相同电机转速下的珠链线速度；模型还区分珠窝高度、绳槽间隙和轴孔间隙。模型内负载估算是设计输入，不能代替最终机械拉力与温升试验。
 
-外壳以用户确认的 [Bambu Studio 3MF](../hardware/mechanical/README.md) 为准。SolidWorks 源文件等待完整打包与隐私审查；打印材料、紧固件和装配说明待补。
+外壳以用户确认的 [Bambu Studio 3MF](../hardware/mechanical/README.md) 为准。原 SolidWorks 装配引用严重丢失，本版交付盖子、架子、壳子三个独立 STEP。实际打印使用 Polymaker PLA Pro 黑色、X1 Carbon 0.4 mm 喷嘴、0.2 mm 层高和 2 圈壁；电机/外壳用 M2.5/M3 螺钉，整机用纳米胶粘贴窗框和墙面。详细参数及尚缺的装配信息见机械说明。
 
 ## 版本与交付边界
 
