@@ -50,3 +50,5 @@ Product 源码位于 [firmware/g030_mainboard](firmware/g030_mainboard/)，详�
 自有软件采用 MIT、原创硬件采用 CERN-OHL-P-2.0、原创文档采用 CC-BY-4.0，范围见 [LICENSING.md](LICENSING.md)。第三方代码、模型、SDK 和资料按各自来源处理，见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。当前资料准备不表示涂鸦云服务或模组固件一并开源。
 
 当前交付见 [电气制造候选](hardware/release-2026-10-25/README.md)、[外壳 3MF](hardware/mechanical/README.md)、[涂鸦依赖](docs/tuya-setup.md)及[隐私审查](docs/privacy-review.md)。
+
+涂鸦接入方法见 [产品、DP、面板与 MCU 联调设计指南](docs/tuya-design-guide.md)，不随仓库发布涂鸦模组固件。

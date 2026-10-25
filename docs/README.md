@@ -27,3 +27,5 @@
 - [隐私审查](privacy-review.md)
 - [自己的涂鸦产品与 SDK](tuya-setup.md)
 - [许可范围](../LICENSING.md)
+
+- [涂鸦接入设计方法](tuya-design-guide.md)：自己的产品、DP 契约、面板绑定、SDK 适配和联调流程。
