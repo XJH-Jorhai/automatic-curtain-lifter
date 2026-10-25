@@ -3,8 +3,8 @@
   "files": [
     {
       "path": ".gitattributes",
-      "bytes": 959,
-      "sha256": "ec99773eb09a6c48b89b5573ff4f7c3a4cfed5dcd88711defee145fc35413aba"
+      "bytes": 1052,
+      "sha256": "766b6190b1f615311a6d397a08ba43ec8138ea5bb26e42b01d126d8208874d6f"
     },
     {
       "path": ".github/workflows/host-tests.yml",
@@ -1698,18 +1698,18 @@
     },
     {
       "path": "hardware/mechanical/壳子.STEP",
-      "bytes": 191486,
-      "sha256": "a176ef582914583bf3943993d4cb13c7c66b7b865c1f534ba972d0077db1abb4"
+      "bytes": 194195,
+      "sha256": "8ae0e6732bce2e5219ff7286c3484281a126eafde4c082f58db299cb021bb95c"
     },
     {
       "path": "hardware/mechanical/架子.STEP",
-      "bytes": 50624,
-      "sha256": "1439c54c8ff29f73c9237a418857b36dd98a2aab0a42844c5674978086a3d5bd"
+      "bytes": 51355,
+      "sha256": "47584fdae62a2160b958cfdb9876106e6a2b7ac0ed17ba8e47017e85bf01fde1"
     },
     {
       "path": "hardware/mechanical/盖子.STEP",
-      "bytes": 196488,
-      "sha256": "c90d154894a49bcb21bbd605c3f0e7af9c5308b894fb5746a503a6b54ea8a011"
+      "bytes": 199271,
+      "sha256": "9f876a973bf7b92d90652ef5aee7d1211a4ce97f9cfc72fd1b69e5a3f96a5cb7"
     },
     {
       "path": "hardware/release-2026-10-25/README.md",

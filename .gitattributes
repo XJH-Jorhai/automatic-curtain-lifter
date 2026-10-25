@@ -37,3 +37,6 @@ CMakeLists.txt text eol=lf
 *.jpg     binary
 *.jpeg    binary
 *.zip     binary
+
+# Preserve original CAD exchange bytes and header encoding
+hardware/mechanical/*.STEP -text
