@@ -1,0 +1,4 @@
+Parametric ball chain pulley by Unaimed on Thingiverse: https://www.thingiverse.com/thing:3147
+
+Summary:
+A parametric ball chain pulley for use with ball chain.Built in OpenSCAD. Has variables for changing the dimensions. Comes with 4 different fastening methods (selectable with variable). Grub screw with captive nut, hose clamp style (like http://www.thingiverse.com/thing:951), two flat spots (mendel standard) and one flat spot.Based on http://www.thingiverse.com/thing:1322. Original intent was to fix that script because its conversions aren't correct (diameter/radious) but i ended up changing it totally.Printer under construction therefore untested.

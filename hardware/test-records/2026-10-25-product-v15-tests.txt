@@ -1,0 +1,49 @@
+PASS both motor directions: save direction before endpoints; working UP and sensing DOWN current profiles; either endpoint order; learned range and 37%; unchanged endpoints not resaved
+PASS release during either probe restarts A; release after completion preserves direction/save and never re-enters probing
+PASS interrupted working stroke retains coordinate; reboot keeps direction/range but waits for a real endpoint to trust position
+PASS ambiguous direction, ADC/rail/nFAULT, 1.5 s probe cap, early stall, timeout/tick wrap and no false persistence
+PASS startup blanking, relative TRQ, glitch rejection, stale feedback, duplicate requests and 200 ms reversal dwell
+PASS measured nonzero 124 stall, either probe order with high FREE count, two high plateaus rejected, indeterminate gap rejected, gradual TRQ collapse cannot lower its own baseline
+PASS louder B1 once: same 1177 ms score, working-current setting, +/-5 microsteps, balanced edges, no lift steps or EEPROM writes/retries
+PASS real Tuya SDK: initial 50, queries, malformed DP/checksum, STOP; remote movement rejected until local direction learning
+PASS first PC7 toggle=UP; release cancels; opposite-key retry retains mapping; immediate direction-only EEPROM save/reload; UP/DOWN360 with separate currents; separate endpoint saves; no repeated writes
+PASS working real Tuya SDK: learned 37% target, STOP and offline stopping
+PASS startup music: STOP, local key, motion preemption, normal-current restore, nFAULT and main-loop timeout
+PASS real product runtime: debounce, release ISR, conflict, local priority, main watchdog, nFAULT, ADC failure, idle EEPROM access
+PASS actual motor driver: exact pulse limit and independent segment timeout
+PASS 360 rpm steady timer half-period 52 us; STOP blocks further steps
+PASS sensing-current profile: working current through full ramp, low current only at steady speed before ADC window
+PASS persistence: torn-newer CRC fallback, boot-held interlock, saved switch/motor mapping, no re-probe or idle writes
+PASS boot-held key skips music once; release never replays it
+PASS missing/corrupt score or EEPROM read failure: no playback, writes or automatic retries
+PASS missing/corrupt score or EEPROM read failure: no playback, writes or automatic retries
+PASS failed direction write stops; no automatic retry; next explicit key retries save without re-probing
+PASS release inside final direction ADC sample prevents stale success/save; next toggle restarts probe A
+PASS indistinguishable 2880 plateaus: explicit unusable-signal error after both probes, retained bounded RAM samples, no false direction/EEPROM commit
+PASS real EEPROM: direction/top/bottom events within 60 s, verified pages, shared 8-attempt cap including failures, music untouched
+PASS real EEPROM: generic 60 s cooldown, same-value skip, cross-page and music-slot rejection unchanged
+PASS real EEPROM: torn new page reports failure and preserves previous journal slot
+PASS constant-current capture: confirmed local direction, first toggle=UP, full-current 360 both ways, synthetic 180 normal / 16 stalled input, endpoint stopping; automatic UP/DOWN traces survive manual taps; remote rejected and all EEPROM bytes untouched
+PASS retained real 10 ms top waveform: prior baseline 0, stop 15772 ms, 110 ms after first drop (5 ms ADC timing not reconstructed)
+PASS retained real 10 ms top waveform: prior baseline 180, stop 15772 ms, 110 ms after first drop (5 ms ADC timing not reconstructed)
+PASS retained real 10 ms top waveform: prior baseline 245, stop 15772 ms, 110 ms after first drop (5 ms ADC timing not reconstructed)
+PASS retained real 10 ms top waveform: prior baseline 265, stop 15772 ms, 110 ms after first drop (5 ms ADC timing not reconstructed)
+PASS capture transient rejection: short low bursts and two high outliers do not create endpoints or inflate baseline; new segment clears filter
+PASS capture raw ADC-rail fault bypasses filter; startup blanking remains intact even when starting blocked
+PASS working real Tuya SDK: learned 37% target, STOP and offline stopping
+PASS confirmed Product: no probes, first key=UP saved before motion, full-current360 both ways, filtered endpoints and range saved, v6/conflicting records ignored, reboot mapping/range restored, no repeated writes, boot-held/release protected
+PASS confirmed Product save failure: no motor start or automatic retry; next explicit toggle retries direction/key save without probes
+PASS real calibration input: v7 migration without writes, no-input rejection, immediate press stop, UP/DOWN EEPROM8 teaching, held-switch interlock,pulse-limited endpoints with no stall,continuous held adjustment,long/AP excludes short,manual flags restored and boot-held button suppressed
+PASS latched toggle:999/1000ms, release continues, raw opposite stops within1ms,999/1000ms reversal wait, fresh1s latch, canceled reversal, held endpoint cannot jog,button cancels auto,conflict/fault stop and tick wrap
+PASS continuous boundary adjustment: held UP/DOWN exceeds4799/15000/40000 pulses,no1s latch,release stops within1ms,repeat while outside,opposite stops+1s reversal,return into range stays manual; App limits/TRQ/nFAULT retained,no automatic EEPROM writes
+PASS real Tuya frames: DP1 open/stop/close, DP2 accepted target and DP101 position, reboot TOP reference then62%,retarget without restart,200ms dwell,canceled home,37% pulse positioning,0/100 soft limits,local/remote takeover,link-loss stop,partial obstruction and unchanged EEPROM
+PASS separate App controls: DP2 retains accepted target even on STOP,DP101 monotonic actual progress,500ms boundary,immediate final/STOP,61->27->61 and open/close; reports never re-enter downloads or restart motor; no EEPROM writes
+PASS real Bool DP102/103: query/false no-op,malformed type/length/value rejected,explicit upper/lower no local history or near-opposite flip,final-pulse stop and EEPROM,unchanged RAM-only,held toggle consumed,offline/button interlocks,reboot restore,homing canceled,write failure/reset/no auto retry and explicit retry
+PASS momentary calibration reports: press=true,release=false at300ms plus one1200ms follow-up; tick wrap,independent DP state,reconnect,query and repeated click; no periodic spam,EEPROM retry or motion
+PASS taught intermediate upper47237: compact LW9 offset/span persistence,reboot physical TOP lies before taught TOP,return downward to37%,both taught soft limits preserved,no ordinary-motion EEPROM writes
+PASS LW8 manual-point migration: no assumed physical zero; explicit old upper + one homing learns offset,LW9 preserves span and offset across reset,37% plus both taught endpoints stop correctly
+PASS manual geometry: UP/DOWN teaching, opposite-end fine adjustment, strict4799/4800 boundary both ways, unknown-position fallback and invalid-span rejection
+PASS explicit App endpoint labels never flip near the opposite endpoint; invalid span rejected and unknown-position anchor supported
+PASS saved soft limits still exact; hold-to-run adjustment exceeds15000 pulses in both directions,reverse crosses back into range without soft stop; explicit save required; early obstruction cannot replace an endpoint
+PASS physical reference: out-of-range TOP remains99%,returns DOWN20000 pulses to taught100%,upper re-teaching shifts offset without moving bottom,negative/oversized offsets rejected
+PASS button debounce, one short on release, one5s long without trailing short, boot-held suppression and tick wrap

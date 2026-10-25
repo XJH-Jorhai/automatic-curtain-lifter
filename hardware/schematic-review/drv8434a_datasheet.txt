@@ -1,0 +1,2425 @@
+                                                                                                                                       DRV8434A
+www.ti.com                                                                                                                          DRV8434A
+                                                                                                                        SLOSE48 – DECEMBER 2020
+                                                                                                                        SLOSE48 – DECEMBER 2020
+
+ DRV8434A Stepper Driver With Integrated Current Sense, 1/256 Microstepping, smart
+                    tune and Stall Detection using GPIO pins
+                                                                            cost. The device uses an internal PWM current
+1 Features                                                                  regulation scheme with smart tune ripple control
+•   PWM Microstepping Stepper Motor Driver                                  decay. Smart tune automatically adjusts for optimal
+    – Simple STEP/DIR Interface                                             current regulation, compensates for motor variation
+    – Up to 1/256 Microstepping Indexer                                     and aging effects and reduces audible noise from the
+•   Integrated Current Sense Functionality                                  motor.
+    – No Sense Resistors Required                                           A simple STEP/DIR interface allows an external
+    – ±4% Full-Scale Current Accuracy                                       controller to manage the direction and step rate of the
+•   Smart tune ripple control decay                                         stepper motor. The device can be configured in full-
+•   Stall Detection using GPIO pins                                         step to 1/256 microstepping. A low-power sleep mode
+                                                                            is provided using a dedicated nSLEEP pin.
+•   4.5 to 48-V Operating Supply Voltage Range
+•   Low RDS(ON): 330 mΩ HS + LS at 24 V, 25°C                               The DRV8434A features advanced stall detection
+•   High Current Capacity: 2.5 A Full-Scale, 1.8 A rms                      algorithm configurable by two digital IO and one
+•   Supports 1.8 V, 3.3 V, 5.0 V Logic Inputs                               analog IO pins, and does not require an SPI interface
+                                                                            to detect stall. By detecting motor stall, system
+•   Low-Current Sleep Mode (2 μA)
+                                                                            designers can identify if the motor was obstructed and
+•   Spread spectrum clocking for low EMI                                    take action as needed which can improve efficiency,
+•   Small Package and Footprint                                             prevent damage and reduce audible noise. Other
+•   Protection Features                                                     protection features include supply undervoltage,
+    – VM Undervoltage Lockout (UVLO)                                        charge pump faults, overcurrent, short circuits, open
+    – Charge Pump Undervoltage (CPUV)                                       load, and overtemperature. Fault conditions are
+    – Overcurrent Protection (OCP)                                          indicated by the nFAULT pin.
+    – Sensorless stall detection                                                                   Device Information
+    – Open Load Detection (OL)                                                PART NUMBER (1)             PACKAGE            BODY SIZE (NOM)
+    – Thermal Shutdown (OTSD)                                                  DRV8434APWPR              HTSSOP (28)           9.7mm x 4.4mm
+    – Fault Condition Output (nFAULT)                                          DRV8434ARGER               VQFN (24)              4mm x 4mm
+
+2 Applications                                                              (1)    For all available packages, see the orderable addendum at
+                                                                                   the end of the data sheet.
+•   Printers and Scanners
+•   ATM and Money Handling Machines
+•   Textile Machines
+•   Stage Lighting Equipment
+•   Office and Home Automation
+•   Factory Automation and Robotics
+•   Medical Applications
+•   3D Printers
+3 Description
+The DRV8434A is a stepper motor driver for industrial
+and consumer applications. The device is fully
+integrated with two N-channel power MOSFET H-
+bridge drivers, a microstepping indexer, and                                                     Simplified Schematic
+integrated current sensing. The DRV8434A is capable
+of driving up to 2.5 A full-scale output current
+(dependent on PCB thermal design).
+The DRV8434A uses an internal current sense
+architecture to eliminate the need for two external
+power sense resistors, saving PCB area and system
+       An©IMPORTANT
+Copyright                NOTICEIncorporated
+           2020 Texas Instruments at the end of this data sheet addresses availability, warranty, changes, use in safety-critical
+                                                                                                               Submit  Document   applications,
+                                                                                                                                    Feedback      1
+       intellectual property matters and other important disclaimers. PRODUCTION DATA.
+                                                       Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                                                                              www.ti.com
+
+
+                                                                        Table of Contents
+1 Features............................................................................1         7.4 Device Functional Modes..........................................27
+2 Applications..................................................................... 1         8 Application and Implementation.................................. 29
+3 Description.......................................................................1           8.1 Application Information............................................. 29
+4 Revision History.............................................................. 2              8.2 Typical Application.................................................... 29
+5 Pin Configuration and Functions...................................2                         9 Power Supply Recommendations................................35
+  5.1 Pin Functions.............................................................. 3             9.1 Bulk Capacitance...................................................... 35
+6 Specifications.................................................................. 5          10 Layout...........................................................................36
+  6.1 Absolute Maximum Ratings........................................ 5                        10.1 Layout Guidelines................................................... 36
+  6.2 ESD Ratings............................................................... 5              10.2 Layout Example...................................................... 36
+  6.3 Recommended Operating Conditions.........................6                              11 Device and Documentation Support..........................38
+  6.4 Thermal Information....................................................6                  11.1 Receiving Notification of Documentation Updates.. 38
+  6.5 Electrical Characteristics.............................................7                  11.2 Support Resources................................................. 38
+  6.6 Indexer Timing Requirements..................................... 8                        11.3 Trademarks............................................................. 38
+7 Detailed Description...................................................... 11                 11.4 Electrostatic Discharge Caution.............................. 38
+  7.1 Overview................................................................... 11            11.5 Glossary.................................................................. 38
+  7.2 Functional Block Diagram......................................... 12                    12 Mechanical, Packaging, and Orderable
+  7.3 Feature Description...................................................13                  Information.................................................................... 39
+
+
+
+4 Revision History
+NOTE: Page numbers for previous revisions may differ from page numbers in the current version.
+                          DATE                                                     REVISION                                                      NOTES
+                   December 2020                                                          *                                                  Initial release
+
+
+5 Pin Configuration and Functions
+
+
+
+
+                                   Figure 5-1. PWP PowerPAD™ Package 28-Pin HTSSOP Top View
+
+
+
+
+2       Submit Document Feedback                                                                                               Copyright © 2020 Texas Instruments Incorporated
+
+                                                                    Product Folder Links: DRV8434A
+                                                                                                                                      DRV8434A
+www.ti.com                                                                                                            SLOSE48 – DECEMBER 2020
+
+
+
+
+                     Figure 5-2. RGE Package 24-Pin VQFN with Exposed Thermal PAD Top View
+
+5.1 Pin Functions
+                             PIN
+                                             NO.               I/O      TYPE                              DESCRIPTION
+ NAME
+                                   HTSSOP          VQFN
+ AOUT1                               4, 5           3           O       Output     Winding A output. Connect to stepper motor winding.
+ AOUT2                               6, 7           4           O       Output     Winding A output. Connect to stepper motor winding.
+ PGND                                3, 12         2, 7         —       Power      Power ground. Connect to system ground.
+ BOUT2                               8, 9           5           O       Output     Winding B output. Connect to stepper motor winding
+ BOUT1                              10, 11          6           O       Output     Winding B output. Connect to stepper motor winding
+ CPH                                  28            23                             Charge pump switching node. Connect a X7R, 0.022-µF,
+                                                                —       Power
+ CPL                                  27            22                             VM-rated ceramic capacitor from CPH to CPL.
+
+                                                                                   Direction input. Logic level sets the direction of stepping;
+ DIR                                  24            19          I       Input
+                                                                                   internal pulldown resistor.
+                                                                                   Logic low to disable device outputs; logic high to enable
+ ENABLE                               25            20          I       Input
+                                                                                   device outputs; Hi-Z to enable 8x torque count scaling.
+                                                                                   Logic supply voltage. Connect a X7R, 0.47-μF to 1-μF, 6.3-
+ DVDD                                 15            10          —       Power
+                                                                                   V or 10-V rated ceramic capacitor to GND.
+ GND                                  14            9           —       Power      Device ground. Connect to system ground.
+                                                                                   Current set reference input. Maximum value 3.3 V. DVDD
+ VREF                                 17            12          I       Input
+                                                                                   can be used to provide VREF through a resistor divider.
+ M0                                   18            13
+                                                                I       Input      Microstepping mode-setting pins. Sets the step mode.
+ M1                                   22            17
+                                                                                   Pin input level programs the stall detection mode:
+                                                                                   0 = Torque count mode, torque count analog voltage is
+                                                                                   output on the TRQ_CNT/STL_TH pin.
+                                                                                   Hi-Z = Learning mode, learning result analog voltage is
+ STL_MODE                             21            16          I       Input      output on the TRQ_CNT/STL_TH pin.
+                                                                                   1 = Stall threshold mode, stall threshold is set by an input
+                                                                                   voltage on the TRQ_CNT/STL_TH pin.
+                                                                                   Tied to ground with a 330k resistor = Stall detection
+                                                                                   disabled.
+                                                                                  Torque count analog output or stall threshold analog input
+ TRQ_CNT/STL_TH                       20            15         I/O   Input/Output depending on STL_MODE pin input level. A 1nF capacitor
+                                                                                  must be connected from this pin to ground.
+                                                                                   Step input. A rising edge causes the indexer to advance
+ STEP                                 23            18          I       Input
+                                                                                   one step; internal pulldown resistor.
+                                                                                   Charge pump output. Connect a X7R, 0.22-μF, 16-V
+ VCP                                   1            24          —       Power
+                                                                                   ceramic capacitor to VM.
+
+
+
+
+Copyright © 2020 Texas Instruments Incorporated                                                                Submit Document Feedback           3
+                                                          Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                                           www.ti.com
+
+                           PIN
+                                          NO.               I/O      TYPE                             DESCRIPTION
+    NAME
+                                 HTSSOP         VQFN
+                                                                               Power supply. Connect to motor supply voltage and bypass
+    VM                            2, 13         1, 8         —       Power     to PGND with two 0.01-µF ceramic capacitors (one for
+                                                                               each pin) plus a bulk capacitor rated for VM.
+                                                                               Stall fault report output. Requires a pullup resistor. A low to
+                                                                               high transition indicates a stall. A high to low transition
+    STL_REP                          19          14          O    Open Drain
+                                                                               indicates a successful learning. If this pin is connected to
+                                                                               ground, stall fault reporting is disabled.
+                                                                               Fault output. Pulled logic low when a fault is detected;
+    nFAULT                           16          11          O    Open Drain
+                                                                               open-drain output. Requires a pullup resistor.
+                                                                               Sleep mode control. Logic high to enable device; logic low
+    nSLEEP                           26          21          I       Input     to enter low-power sleep mode; internal pulldown resistor.
+                                                                               An nSLEEP low pulse clears faults.
+    PAD                              -           -           -         -       Thermal pad. Connect to system ground.
+
+
+
+
+4         Submit Document Feedback                                                                 Copyright © 2020 Texas Instruments Incorporated
+
+                                                       Product Folder Links: DRV8434A
+                                                                                                                               DRV8434A
+www.ti.com                                                                                                    SLOSE48 – DECEMBER 2020
+
+
+6 Specifications
+6.1 Absolute Maximum Ratings
+over operating free-air temperature range (unless otherwise noted)(1)
+                                                                                                       MIN           MAX            UNIT
+ Power supply voltage (VM)                                                                             –0.3           50             V
+ Charge pump voltage (VCP, CPH)                                                                        –0.3         VVM + 7          V
+ Charge pump negative switching pin (CPL)                                                              –0.3          VVM             V
+ nSLEEP pin voltage (nSLEEP)                                                                           –0.3          VVM             V
+ Internal regulator voltage (DVDD)                                                                     –0.3          5.75            V
+ Control pin voltage (STEP, DIR, ENABLE, nFAULT, STL_MODE, STL_REP, TRQ_CNT/STL_TH,
+                                                                                                       –0.3          5.75            V
+ M0, M1)
+ Open drain output current (nFAULT, STL_REP)                                                            0             10            mA
+ Reference input pin voltage (VREF)                                                                    –0.3          5.75            V
+ Continuous phase node pin voltage (AOUT1, AOUT2, BOUT1, BOUT2)                                        –1           VVM + 1          V
+ Transient 100 ns phase node pin voltage (AOUT1, AOUT2, BOUT1, BOUT2)                                  –3           VVM + 3          V
+ Peak drive current (AOUT1, AOUT2, BOUT1, BOUT2)                                                       Internally Limited            A
+ Operating ambient temperature, TA                                                                     –40           125             °C
+ Operating junction temperature, TJ                                                                    –40           150             °C
+ Storage temperature, Tstg                                                                             –65           150             °C
+
+(1)    Stresses beyond those listed under Absolute Maximum Ratings may cause permanent damage to the device. These are stress ratings
+       only, which do not imply functional operation of the device at these or any other conditions beyond those indicated under
+       Recommended Operating Conditions. Exposure to absolute-maximum-rated conditions for extended periods may affect device
+       reliability.
+
+6.2 ESD Ratings
+                                                                                                                            VALUE    UNIT
+                          Human-body model (HBM), per ANSI/ESDA/JEDEC JS-001                                                ±2000
+          Electrostatic                                                                   Corner pins for PWP (1,
+ V(ESD)                   Charged-device model (CDM), per JEDEC specification JESD22-                                       ±750         V
+          discharge                                                                       14, 15, and 28)
+                          C101
+                                                                                          Other pins                        ±500
+
+
+
+
+Copyright © 2020 Texas Instruments Incorporated                                                         Submit Document Feedback             5
+                                                     Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                                                www.ti.com
+
+6.3 Recommended Operating Conditions
+over operating free-air temperature range (unless otherwise noted)
+                                                                                                               MIN            MAX         UNIT
+    VVM          Supply voltage range for normal (DC) operation                                                 4.5             48          V
+    VI           Logic level input voltage                                                                       0              5.5         V
+    VVREF        VREF voltage                                                                                  0.05             3.3         V
+    fSTEP        Applied STEP signal (STEP)                                                                      0            500(1)      kHz
+    IFS          Motor full-scale current (xOUTx)                                                                0            2.5(2)        A
+    Irms         Motor RMS current (xOUTx)                                                                       0            1.8(2)        A
+    TA           Operating ambient temperature                                                                 –40              125        °C
+    TJ           Operating junction temperature                                                                –40              150        °C
+
+(1)         STEP input can operate up to 500 kHz, but system bandwidth is limited by the motor load
+(2)         Power dissipation and thermal limits must be observed
+
+6.4 Thermal Information
+                                                                                 PWP (HTSSOP)                     RGE (VQFN)
+                          THERMAL METRIC(1)                                                                                               UNIT
+                                                                                     28 PINS                          24 PINS
+    RθJA        Junction-to-ambient thermal resistance                                 29.7                            39.0               °C/W
+    Rθ
+                Junction-to-case (top) thermal resistance                              23.0                            28.9               °C/W
+    JC(top)
+
+    RθJB        Junction-to-board thermal resistance                                   9.3                             16.0               °C/W
+    ψJT         Junction-to-top characterization parameter                             0.3                              0.4               °C/W
+    ψJB         Junction-to-board characterization parameter                           9.2                             15.9               °C/W
+    Rθ
+                Junction-to-case (bottom) thermal resistance                           2.4                              3.4               °C/W
+    JC(bot)
+
+(1)         For more information about traditional and new thermal metrics, see the Semiconductor and IC Package Thermal Metrics application
+            report.
+
+
+
+
+6             Submit Document Feedback                                                                Copyright © 2020 Texas Instruments Incorporated
+
+                                                               Product Folder Links: DRV8434A
+                                                                                                                      DRV8434A
+www.ti.com                                                                                               SLOSE48 – DECEMBER 2020
+
+
+6.5 Electrical Characteristics
+Typical values are at TA = 25°C and VVM = 24 V. All limits are over recommended operating conditions, unless otherwise
+noted.
+                 PARAMETER                                    TEST CONDITIONS             MIN     TYP          MAX      UNIT
+ POWER SUPPLIES (VM, DVDD)
+ IVM           VM operating supply current        ENABLE = 1, nSLEEP = 1, No motor load            5            6.5      mA
+ IVMQ          VM sleep mode supply current nSLEEP = 0                                             2            4         μA
+ tSLEEP        Sleep time                         nSLEEP = 0 to sleep-mode                120                             μs
+ tRESET        nSLEEP reset pulse                 nSLEEP low to clear fault               20                    40        μs
+ tWAKE         Wake-up time                       nSLEEP = 1 to output transition                  0.8          1.2      ms
+ tON           Turn-on time                       VM > UVLO to output transition                   0.8          1.2      ms
+ tEN           Enable time                        ENABLE = 0/1 to output transition                             5         μs
+                                                  No external load, 6V < VVM < 48V        4.75     5           5.25       V
+ VDVDD         Internal regulator voltage
+                                                  No external load, VVM = 4.5V            4.2     4.35                    V
+ CHARGE PUMP (VCP, CPH, CPL)
+ VVCP          VCP operating voltage              6V < VVM < 48V                                 VVM + 5                  V
+               Charge pump switching
+ f(VCP)                                           VVM > UVLO; nSLEEP = 1                          360                    kHz
+               frequency
+ LOGIC-LEVEL INPUTS (STEP, DIR, nSLEEP)
+ VIL           Input logic-low voltage                                                     0                    0.6       V
+ VIH           Input logic-high voltage                                                   1.5                   5.5       V
+ VHYS          Input logic hysteresis                                                             150                    mV
+ IIL           Input logic-low current            VIN = 0 V                               –1                    1         μA
+ IIH           Input logic-high current           VIN = 5 V                                                    100        μA
+ TRI-LEVEL INPUTS (M0, ENABLE)
+ VI1           Input logic-low voltage            Tied to GND                              0                    0.6       V
+ VI2           Input Hi-Z voltage                 Hi-Z                                    1.8      2            2.2       V
+ VI3           Input logic-high voltage           Tied to DVDD                            2.7                   5.5       V
+ IO            Output pull-up current                                                              10                     μA
+ QUAD-LEVEL INPUT (M1, STL_MODE)
+ VI1           Input logic-low voltage            Tied to GND                              0                    0.6       V
+ VI2                                              330kΩ ± 5% to GND                        1      1.25          1.4       V
+ VI3           Input Hi-Z voltage                 Hi-Z                                    1.8      2            2.2       V
+ VI4           Input logic-high voltage           Tied to DVDD                            2.7                   5.5       V
+ IIL           Output pull-up current                                                              10                     μA
+ TORQUE COUNT INPUT/ STALL THRESHOLD OUTPUT (TRQ_CNT/STL_TH)
+ VO1           Output low voltage                 STL_MODE = 0V                           0.1                             V
+ VO2           Output High voltage                STL_MODE = 0V                                                 2.4       V
+ VI1           Input low voltage                  STL_MODE = DVDD                         0.1                             V
+ VI2           Input High voltage                 STL_MODE = DVDD                                               2.4       V
+ NBIT          Torque-count DAC Resolution                                                12                             Bits
+               TRQ_CNT/STL_TH pin
+ CLOAD                                            RLOAD = Infinite, Phase margin = 45°                          1         nF
+               Capacitive Load
+               TRQ_CNT/STL_TH pin short-
+ ISHORT                                           Full scale output shorted to GND                 2                     mA
+               circuit current
+               DAC Output voltage settling
+ tS                                               99% of final target                              50                     μs
+               time
+ CONTROL OUTPUTS (nFAULT, STL_REP)
+
+
+Copyright © 2020 Texas Instruments Incorporated                                                  Submit Document Feedback          7
+                                                         Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                                                    www.ti.com
+
+Typical values are at TA = 25°C and VVM = 24 V. All limits are over recommended operating conditions, unless otherwise
+noted.
+                       PARAMETER                                TEST CONDITIONS                        MIN            TYP          MAX          UNIT
+    VOL              Output logic-low voltage      IO = 5 mA                                                                        0.5           V
+    IOH              Output logic-high leakage                                                         –1                            1           μA
+                                                   STL_REP, pulled low to disable stall
+    VIL              Input logic-low voltage                                                            0                           0.6           V
+                                                   reporting
+                                                   STL_REP, pulled high to enable stall
+    VIH              Input logic-high voltage                                                          1.5                          5.5           V
+                                                   reporting
+    MOTOR DRIVER OUTPUTS (AOUT1, AOUT2, BOUT1, BOUT2)
+                                                   TJ = 25 °C, IO = -1 A                                              165           200          mΩ
+    RDS(ON)          High-side FET on resistance   TJ = 125 °C, IO = -1 A                                             250           300          mΩ
+                                                   TJ = 150 °C, IO = -1 A                                             280           350          mΩ
+                                                   TJ = 25 °C, IO = 1 A                                               165           200          mΩ
+    RDS(ON)          Low-side FET on resistance    TJ = 125 °C, IO = 1 A                                              250           300          mΩ
+                                                   TJ = 150 °C, IO = 1 A                                              280           350          mΩ
+                                                   VVM = 24 V, IO = 1 A, Between 10% and
+    tSR              Output slew rate                                                                                 240                       V/µs
+                                                   90%
+    PWM CURRENT CONTROL (VREF)
+    KV               Transimpedance gain           VREF = 3.3 V                                    1.254              1.32         1.386         V/A
+    IVREF            VREF Leakage Current          VREF = 3.3 V                                                                     8.25         μA
+                                                   0.25 A < IO < 0.5 A                                 –12                           12
+    ΔITRIP           Current trip accuracy         0.5 A < IO < 1 A                                    –6                            6           %
+                                                   1 A < IO < 2.5 A                                    –4                            4
+                     AOUT and BOUT current
+    IO,CH                                          IO = 2.5 A                                          –2.5                         2.5          %
+                     matching
+    PROTECTION CIRCUITS
+                                                   VM falling, UVLO falling                            4.1            4.25          4.35
+    VUVLO            VM UVLO lockout                                                                                                              V
+                                                   VM rising, UVLO rising                              4.2            4.35          4.45
+    VUVLO,HYS        Undervoltage hysteresis       Rising to falling threshold                                        100                        mV
+    VCPUV            Charge pump undervoltage      VCP falling; CPUV report                                         VVM + 2                       V
+    IOCP             Overcurrent protection        Current through any FET                              4                                         A
+    tOCP             Overcurrent deglitch time                                                                         2                         μs
+    tRETRY           Overcurrent retry time                                                                            4                         ms
+    tOL              Open load detection time                                                                                        50          ms
+    IOL              Open load current threshold                                                                       75                        mA
+    TOTSD            Thermal shutdown              Die temperature TJ                                  150            165           180          °C
+    THYS_OTSD        Thermal shutdown hysteresis   Die temperature TJ                                                  20                        °C
+
+
+6.6 Indexer Timing Requirements
+Typical limits are at TJ = 25°C and VVM = 24 V. Over recommended operating conditions unless otherwise noted.
+    NO.                                                                                                             MIN            MAX         UNIT
+      1      ƒSTEP          Step frequency                                                                                        500(1)        kHz
+      2      tWH(STEP)      Pulse duration, STEP high                                                               970                          ns
+      3      tWL(STEP)      Pulse duration, STEP low                                                                970                          ns
+      4      tSU(DIR, Mx)   Setup time, DIR or MODEx to STEP rising                                                 200                          ns
+      5      tH(DIR, Mx)    Hold time, DIR or MODEx to STEP rising                                                  200                          ns
+
+(1)         STEP input can operate up to 500 kHz, but system bandwidth is limited by the motor load.
+
+
+
+8           Submit Document Feedback                                                                        Copyright © 2020 Texas Instruments Incorporated
+
+                                                          Product Folder Links: DRV8434A
+                                                                                                                       DRV8434A
+www.ti.com                                                                                                SLOSE48 – DECEMBER 2020
+
+
+
+
+                                              Figure 6-1. STEP and DIR Timing Diagram
+
+6.6.1 Typical Characteristics
+
+
+
+
+            Figure 6-2. Sleep Current over Supply Voltage                     Figure 6-3. Sleep Current over Temperature
+
+
+
+
+         Figure 6-4. Operating Current over Supply Voltage                  Figure 6-5. Operating Current over Temperature
+
+
+
+
+Copyright © 2020 Texas Instruments Incorporated                                                     Submit Document Feedback        9
+                                                     Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                                 www.ti.com
+
+6.6.1 Typical Characteristics (continued)
+
+
+
+
+        Figure 6-6. Low-Side RDS(ON) over Supply Voltage                Figure 6-7. Low-Side RDS(ON) over Temperature
+
+
+
+
+       Figure 6-8. High-Side RDS(ON) over Supply Voltage                Figure 6-9. High-Side RDS(ON) over Temperature
+
+
+
+
+10    Submit Document Feedback                                                           Copyright © 2020 Texas Instruments Incorporated
+
+                                                Product Folder Links: DRV8434A
+                                                                                                           DRV8434A
+www.ti.com                                                                                     SLOSE48 – DECEMBER 2020
+
+
+7 Detailed Description
+7.1 Overview
+The DRV8434A is an integrated motor-driver solution for bipolar stepper motors. The device provides maximum
+integration by integrating two N-channel power MOSFET H-bridges, current sense resistors and regulation
+circuitry, and a microstepping indexer. The DRV8434A is capable of supporting a wide supply voltage of 4.5 to
+48 V. DRV8434A provides an output current up to 4 A peak, 2.5 A full-scale, or 1.8 A root mean square (rms).
+The actual full-scale and rms current depends on the ambient temperature, supply voltage, and PCB thermal
+capability.
+The DRV8434A uses an integrated current-sense architecture which eliminates the need for two external power
+sense resistors, hence saving significant board space, BOM cost, design efforts and reduces significant power
+consumption. This architecture removes the power dissipated in the sense resistors by using a current mirror
+approach and using the internal power MOSFETs for current sensing. The current regulation set point is adjusted
+by the voltage at the VREF pin.
+A simple STEP/DIR interface allows for an external controller to manage the direction and step rate of the
+stepper motor. The internal microstepping indexer can execute high-accuracy micro-stepping without requiring
+the external controller to manage the winding current level. The indexer is capable of full step, half step, and 1/4,
+1/8, 1/16, 1/32, 1/64, 1/128, and 1/256 microstepping. High microstepping contributes to significant audible noise
+reduction and smooth motion. In addition to a standard half stepping mode, a noncircular half stepping mode is
+available for increased torque output at higher motor RPM.
+The device operates with smart tune ripple control decay mode, which uses a variable off-time, ripple current
+control scheme to minimize distortion of the motor winding current. The DRV8434A can detect a motor overload
+stall condition or an end-of-line travel, by detecting back-emf phase shift between rising and falling current
+quadrants of the motor current. Unlike conventional stall detection algorithms which require an SPI interface, the
+DRV8434A detects stall using two digital IO and one analog IO pins.
+The device integrates a spread spectrum clocking feature for both the internal digital oscillator and internal
+charge pump. This feature minimizes the radiated emissions from the device. A low-power sleep mode is
+included which allows the system to save power when not actively driving the motor.
+
+
+
+
+Copyright © 2020 Texas Instruments Incorporated                                          Submit Document Feedback       11
+                                                  Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                          www.ti.com
+
+7.2 Functional Block Diagram
+
+
+
+
+12    Submit Document Feedback                                    Copyright © 2020 Texas Instruments Incorporated
+
+                                 Product Folder Links: DRV8434A
+                                                                                                                                                   DRV8434A
+www.ti.com                                                                                                                           SLOSE48 – DECEMBER 2020
+
+
+7.3 Feature Description
+Table 7-1 lists the recommended external components for the DRV8434A device.
+                                               Table 7-1. DRV8434A External Components
+      COMPONENT                       PIN 1                                PIN 2                                    RECOMMENDED
+         CVM1                          VM                                PGND               Two X7R, 0.01-µF, VM-rated ceramic capacitors
+         CVM2                          VM                                PGND               Bulk, VM-rated capacitor
+         CVCP                         VCP                                   VM              X7R, 0.22-µF, 16-V ceramic capacitor
+         CSW                          CPH                                  CPL              X7R, 0.022-µF, VM-rated ceramic capacitor
+        CDVDD                        DVDD                                  GND              X7R, 0.47-µF to 1-µF, 6.3-V ceramic capacitor
+       CTRQ_CNT               TRQ_CNT/STL_TH                               GND              X7R, 1-nF, 6.3-V ceramic capacitor
+        RnFAULT                      VCC (1)                            nFAULT              >4.7-kΩ resistor
+       RSTL_REP                      VCC (1)                           STL_REP              >4.7-kΩ resistor
+        RREF1                         VREF                                 VCC              Resistor to limit chopping current. VREF pin has an internal 500 kΩ
+                                                                                            resistor to GND, therefore it is recommended that the value of
+   RREF2 (Optional)                   VREF                                 GND              parallel combination of RREF1 and RREF2 should be less than 50
+                                                                                            kΩ.
+
+(1)    VCC is not a pin on the DRV8434A, but a VCC supply voltage pullup is required for open-drain outputs nFAULT and STL_REP; both
+       outputs may also be pulled up to DVDD
+
+7.3.1 Stepper Motor Driver Current Ratings
+Stepper motor drivers can be classified using three different numbers to describe the output current: peak, RMS,
+and full-scale.
+7.3.1.1 Peak Current Rating
+The peak current in a stepper driver is limited by the overcurrent protection trip threshold IOCP. The peak current
+describes any transient duration current pulse, for example when charging capacitance, when the overall duty
+cycle is very low. In general the minimum value of I OCP specifies the peak current rating of the stepper motor
+driver. For the DRV8434A, the peak current rating is 4 A per bridge.
+7.3.1.2 RMS Current Rating
+The RMS (average) current is determined by the thermal considerations of the IC. The RMS current is calculated
+based on the R DS(ON), rise and fall time, PWM frequency, device quiescent current, and package thermal
+performance in a typical system at 25°C. The actual operating RMS current may be higher or lower depending
+on heatsinking and ambient temperature. For the DRV8434A, the RMS current rating is 1.8 A per bridge.
+7.3.1.3 Full-Scale Current Rating
+The full-scale current describes the top of the sinusoid current waveform while microstepping. Because the
+sinusoid amplitude is related to the RMS current, the full-scale current is also determined by the thermal
+considerations of the device. The full-scale current rating is approximately √2 × I RMS for a sinusoidal current
+waveform, and IRMS for a square wave current waveform (full step).
+                                                                                  Full-scale current
+
+                                                                    RMS current
+                                                  Output Current
+
+
+
+
+                                                                    AOUT
+                                                                    BOUT
+
+                                                                                      Step Input
+
+
+                                                   Figure 7-1. Full-Scale and RMS Current
+
+
+Copyright © 2020 Texas Instruments Incorporated                                                                               Submit Document Feedback            13
+                                                                   Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                               www.ti.com
+
+7.3.2 PWM Motor Drivers
+The DRV8434A has drivers for two full H-bridges to drive the two windings of a bipolar stepper motor. Figure 7-2
+shows a block diagram of the circuitry.
+
+
+
+
+                                 Figure 7-2. PWM Motor Driver Block Diagram
+
+7.3.3 Microstepping Indexer
+Built-in indexer logic in the DRV8434A device allows a number of different step modes. The M0 and M1 pins are
+used to configure the step mode as shown in Table 7-2. The settings can be changed on the fly.
+                                  Table 7-2. Microstepping Indexer Settings
+                                  M0            M1                    STEP MODE
+                                  0             0          Full step (2-phase excitation)
+                                                           with 100% current
+                                  0        330 kΩ to GND   Full step (2-phase excitation)
+                                                           with 71% current
+                                  1             0          Non-circular 1/2 step
+                                 Hi-Z           0          1/2 step
+                                  0             1          1/4 step
+                                  1             1          1/8 step
+
+14    Submit Document Feedback                                                         Copyright © 2020 Texas Instruments Incorporated
+
+                                          Product Folder Links: DRV8434A
+                                                                                                                           DRV8434A
+www.ti.com                                                                                                     SLOSE48 – DECEMBER 2020
+
+                                              Table 7-2. Microstepping Indexer Settings
+                                                             (continued)
+                                              M0                M1                    STEP MODE
+                                              Hi-Z               1        1/16 step
+                                                  0             Hi-Z      1/32 step
+                                              Hi-Z       330kΩ to GND     1/64 step
+                                              Hi-Z              Hi-Z      1/128 step
+                                                  1             Hi-Z      1/256 step
+
+
+Table 7-3 shows the relative current and step directions for full-step (71% current), 1/2 step, 1/4 step and 1/8
+step operation. Higher microstepping resolutions follow the same pattern. The AOUT current is the sine of the
+electrical angle and the BOUT current is the cosine of the electrical angle. Positive current is defined as current
+flowing from the xOUT1 pin to the xOUT2 pin while driving.
+At each rising edge of the STEP input the indexer advances to the next state in the table. The direction shown is
+with the DIR pin logic high. If the DIR pin is logic low, the sequence table is reversed.
+
+                                                                       Note
+       If the step mode is changed on the fly while stepping, the indexer advances to the next valid state for
+       the new step mode setting at the rising edge of STEP.
+
+The initial excitation state is an electrical angle of 45°, corresponding to 71% of full-scale current in both coils.
+This state is entered immediately after power-up, after exiting logic undervoltage lockout, or after exiting sleep
+mode.
+                                          Table 7-3. Relative Current and Step Directions
+                                                                        AOUT CURRENT              BOUT CURRENT     ELECTRICAL
+   1/8 STEP         1/4 STEP         1/2 STEP         FULL STEP 71%
+                                                                        (% FULL-SCALE)            (% FULL-SCALE)   ANGLE (DEGREES)
+       1                1                 1                                       0%                   100%               0.00
+       2                                                                         20%                    98%               11.25
+       3                2                                                        38%                    92%               22.50
+       4                                                                         56%                    83%               33.75
+       5                3                 2                 1                    71%                    71%               45.00
+       6                                                                         83%                    56%               56.25
+       7                4                                                        92%                    38%               67.50
+       8                                                                         98%                    20%               78.75
+       9                5                 3                                     100%                    0%                90.00
+       10                                                                        98%                    -20%             101.25
+       11               6                                                        92%                    -38%             112.50
+       12                                                                        83%                    -56%             123.75
+       13               7                 4                 2                    71%                    -71%             135.00
+       14                                                                        56%                    -83%             146.25
+       15               8                                                        38%                    -92%             157.50
+       16                                                                        20%                    -98%             168.75
+       17               9                 5                                       0%                   -100%             180.00
+       18                                                                        -20%                   -98%             191.25
+       19               10                                                       -38%                   -92%             202.50
+       20                                                                        -56%                   -83%             213.75
+       21               11                6                 3                    -71%                   -71%             225.00
+       22                                                                        -83%                   -56%             236.25
+       23               12                                                       -92%                   -38%             247.50
+
+
+Copyright © 2020 Texas Instruments Incorporated                                                           Submit Document Feedback   15
+                                                         Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                                    www.ti.com
+
+                            Table 7-3. Relative Current and Step Directions (continued)
+                                                                   AOUT CURRENT           BOUT CURRENT          ELECTRICAL
+     1/8 STEP    1/4 STEP      1/2 STEP        FULL STEP 71%
+                                                                   (% FULL-SCALE)         (% FULL-SCALE)        ANGLE (DEGREES)
+       24                                                                   -98%                -20%                     258.75
+       25           13               7                                     -100%                  0%                     270.00
+       26                                                                   -98%                 20%                     281.25
+       27           14                                                      -92%                 38%                     292.50
+       28                                                                   -83%                 56%                     303.75
+       29           15               8                  4                   -71%                 71%                     315.00
+       30                                                                   -56%                 83%                     326.25
+       31           16                                                      -38%                 92%                     337.50
+       32                                                                   -20%                 98%                     348.75
+
+
+Table 7-4 shows the full step operation with 100% full-scale current. This stepping mode consumes more power
+than full-step mode with 71% current, but provides a higher torque at high motor RPM.
+                                            Table 7-4. Full Step with 100% Current
+                                   AOUT CURRENT                     BOUT CURRENT                   ELECTRICAL ANGLE
+         FULL STEP 100%
+                                   (% FULL-SCALE)                   (% FULL-SCALE)                 (DEGREES)
+                1                               100                                100                             45
+                2                               -100                               100                             135
+                3                               -100                               -100                            225
+                4                               100                                –100                            315
+
+
+Table 7-5 shows the noncircular 1/2–step operation. This stepping mode consumes more power than circular
+1/2-step operation, but provides a higher torque at high motor RPM.
+                                         Table 7-5. Non-Circular 1/2-Stepping Current
+ NON-CIRCULAR 1/2-STEP             AOUT CURRENT                     BOUT CURRENT                   ELECTRICAL ANGLE
+                                   (% FULL-SCALE)                   (% FULL-SCALE)                 (DEGREES)
+                1                                0                                 100                              0
+                2                               100                                100                             45
+                3                               100                                   0                            90
+                4                               100                                –100                            135
+                5                                0                                 –100                            180
+                6                               –100                               –100                            225
+                7                               –100                                  0                            270
+                8                               –100                               100                             315
+
+
+7.3.4 Controlling VREF with an MCU DAC
+In some cases, the full-scale output current may need to be changed between many different values, depending
+on motor speed and loading. The voltage of the VREF pin can be adjusted in the system to change the full-scale
+current.
+In this mode of operation, as the DAC voltage increases, the full-scale regulation current increases as well. For
+proper operation, the output of the DAC must not exceed 3.3 V.
+
+
+
+
+16      Submit Document Feedback                                                            Copyright © 2020 Texas Instruments Incorporated
+
+                                                     Product Folder Links: DRV8434A
+                                                                                                            DRV8434A
+www.ti.com                                                                                      SLOSE48 – DECEMBER 2020
+
+
+
+
+                                        Figure 7-3. Controlling VREF with a DAC Resource
+
+The VREF pin can also be adjusted using a PWM signal and low-pass filter.
+
+
+
+
+                                       Figure 7-4. Controlling VREF With a PWM Resource
+
+
+
+
+Copyright © 2020 Texas Instruments Incorporated                                            Submit Document Feedback   17
+                                                    Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                                                                       www.ti.com
+
+7.3.5 Current Regulation and Decay Mode
+The DRV8434A operates with smart tune ripple control decay mode, which uses only slow decay during PWM
+current regulation. The PWM regulation current is set by a comparator which monitors the voltage across the
+current sense MOSFETs in parallel with the low-side power MOSFETs. The current sense MOSFETs are biased
+with a reference current that is the output of a current-mode sine-weighted DAC whose full-scale reference
+current is set by the voltage at the VREF pin.
+The full-scale regulation current (IFS) can be calculated as IFS (A) = VREF (V) / KV (V/A) = VREF (V) / 1.32 (V/A).
+During PWM current chopping, the H-bridge is enabled to drive a current through the motor winding until the
+PWM current chopping threshold is reached. Thereafter, the winding current is re-circulated by enabling both
+low-side MOSFETs of the H-bridge.
+7.3.5.1 Smart tune Ripple Control
+
+                                                                                           ITRIP
+Increasing Phase Current (A)
+
+
+
+
+                                                                                           IVALLEY
+
+
+
+
+                               tBLANK          tOFF            tBLANK                                tOFF          tBLANK            tOFF                  tBLANK
+                                 tDRIVE                                  tDRIVE                                    tDRIVE                                  tDRIVE
+Decreasing Phase Current (A)
+
+
+
+
+                                                              ITRIP
+
+                                                               IVALLEY
+
+
+
+                               tBLANK                 tOFF                        tBLANK                    tOFF            tBLANK                  tOFF
+                                 tDRIVE                                           tDRIVE                                    tDRIVE
+
+
+                                                             Figure 7-5. Smart tune Ripple Control Decay Mode
+
+Smart tune Ripple Control operates by setting an I VALLEY level alongside the I TRIP level. When the current level
+reaches I TRIP, the driver enters slow decay until I VALLEY is reached. In slow decay, both low-side MOSFETs are
+turned on allowing the current to recirculate. In this mode, off-time varies depending on the current level and
+operating conditions.
+The ripple control method allows tight regulation of the current level increasing motor efficiency and system
+performance.
+7.3.5.2 Blanking Time
+After the current is enabled (start of drive phase) in an H-bridge, the current sense comparator is ignored for a
+period of time (tBLANK) before enabling the current-sense circuitry. The blanking time also sets the minimum drive
+time of the PWM. The blanking time is approximately 1 µs.
+
+
+
+
+18                              Submit Document Feedback                                                                      Copyright © 2020 Texas Instruments Incorporated
+
+                                                                                    Product Folder Links: DRV8434A
+                                                                                                           DRV8434A
+www.ti.com                                                                                     SLOSE48 – DECEMBER 2020
+
+
+7.3.6 Charge Pump
+A charge pump is integrated to supply the high-side N-channel MOSFET gate-drive voltage. The charge pump
+requires a capacitor between the VM and VCP pins to act as the storage capacitor. Additionally a ceramic
+capacitor is required between the CPH and CPL pins to act as the flying capacitor.
+
+
+
+
+                                                  Figure 7-6. Charge Pump Block Diagram
+
+
+
+
+Copyright © 2020 Texas Instruments Incorporated                                           Submit Document Feedback   19
+                                                         Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                         www.ti.com
+
+7.3.7 Linear Voltage Regulators
+A linear voltage regulator is integrated in the device for DVDD. The DVDD regulator can be used to provide
+VREF reference voltage. DVDD can supply a maximum of 2mA load. For proper operation, bypass the DVDD
+pin to GND using a ceramic capacitor.
+The DVDD output is nominally 5 V. When the DVDD LDO current load exceeds 2mA, the output voltage drops
+significantly.
+
+
+
+
+                                 Figure 7-7. Linear Voltage Regulator Block Diagram
+
+If a digital input must be tied permanently high (that is, M0, M1 or STL_MODE), tying the input to the DVDD pin
+instead of an external regulator is suggested. This method saves power when the VM power is not applied or the
+device is in sleep mode. The DVDD regulator is disabled and current does not flow through the input pulldown
+resistors. For reference, logic level inputs have a typical pulldown of 200 kΩ.
+The nSLEEP pin must not be tied to DVDD, else the device will never exit sleep mode.
+7.3.8 Logic Level, tri-level and quad-level Pin Diagrams
+Figure 7-8 shows the input structure for M0, STL_MODE and ENABLE pins.
+
+
+
+
+                                       Figure 7-8. Tri-Level Input Pin Diagram
+
+Figure 7-9 shows the input structure for M1 pin.
+
+
+
+
+20    Submit Document Feedback                                                   Copyright © 2020 Texas Instruments Incorporated
+
+                                             Product Folder Links: DRV8434A
+                                                                                                           DRV8434A
+www.ti.com                                                                                     SLOSE48 – DECEMBER 2020
+
+
+
+
+                                              Figure 7-9. Quad-Level Input Pin Diagram
+
+Figure 7-10 shows the input structure for STEP, DIR and nSLEEP pins.
+
+
+
+
+                                             Figure 7-10. Logic-Level Input Pin Diagram
+
+7.3.8.1 nFAULT Pin
+The nFAULT pin has an open-drain output and should be pulled up to a 5 V, 3.3 V or 1.8 V supply. When a fault
+is detected, the nFAULT pin will be logic low. nFAULT pin will be high after power-up. For a 5 V pullup, the
+nFAULT pin can be tied to the DVDD pin with a resistor. For a 3.3 V or 1.8 V pullup, an external supply must be
+used.
+
+
+                                                                            Output
+                                                         nFAULT
+
+
+
+
+                                                      Figure 7-11. nFAULT Pin
+
+•    The STL_REP pin has open-drain output and must be pulled up to a 5 V, 3.3 V or 1.8 V supply. When a stall
+     fault is detected, the STL_REP pin will be logic high. After a successful stall threshold learning, STL_REP pin
+     is pulled low. The STL_REP pin can also be used as an input. When pulled low externally, stall fault reporting
+     is disabled. For a 5 V pullup, the STL_REP pin can be tied to the DVDD pin with a resistor. For a 3.3 V or 1.8
+     V pullup, an external supply must be used.
+
+
+
+
+Copyright © 2020 Texas Instruments Incorporated                                           Submit Document Feedback     21
+                                                     Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                         www.ti.com
+
+
+
+
+                                           Figure 7-12. STL_REP pin
+7.3.9 Protection Circuits
+The device is fully protected against supply undervoltage, charge pump undervoltage, output overcurrent, open
+load, and device overtemperature events. In addition, the device is protected against stall detection in the event
+of overload or end-of-line movement.
+7.3.9.1 VM Undervoltage Lockout (UVLO)
+If at any time the voltage on the VM pin falls below the UVLO-threshold voltage for the voltage supply, all the
+outputs are disabled, and the nFAULT pin is driven low. The charge pump is disabled in this condition. Normal
+operation resumes (motor-driver operation and nFAULT released) when the VM undervoltage condition is
+removed.
+7.3.9.2 VCP Undervoltage Lockout (CPUV)
+If at any time the voltage on the VCP pin falls below the CPUV voltage, all the outputs are disabled, and the
+nFAULT pin is driven low. The charge pump remains active during this condition. Normal operation resumes
+(motor-driver operation and nFAULT released) when the VCP undervoltage condition is removed.
+7.3.9.3 Overcurrent Protection (OCP)
+An analog current-limit circuit on each FET limits the current through the FET by removing the gate drive. If this
+current limit persists for longer than the tOCP time, the FETs in both H-bridges are disabled and the nFAULT pin is
+driven low. The charge pump remains active during this condition. Normal operation resumes automatically
+(motor-driver operation and nFAULT released) after the t RETRY time has elapsed and the fault condition is
+removed.
+7.3.9.4 Stall Detection
+Stepper motors have a distinct relation between the winding current, back-EMF, and mechanical torque load of
+the motor, as shown in Figure 7-13. As motor load approaches the torque capability of the motor for a given
+winding current, the back-EMF will move in phase with the winding current.
+By detecting back-emf phase shift between rising and falling current quadrants of the motor current, the
+DRV8434A can detect a motor overload stall condition or an end-of-line travel. Without Stall Detection, driver will
+continue to drive through the obstacle, causing heating, audible noise and damage to the system.
+Stall detection can replace expensive Hall sensors. Integrated sensorless stall detection results in immediate
+response in the event of motor stall, compared to timeout mechanism of Hall sensors.
+
+
+
+
+22    Submit Document Feedback                                                   Copyright © 2020 Texas Instruments Incorporated
+
+                                           Product Folder Links: DRV8434A
+                                                                                                           DRV8434A
+www.ti.com                                                                                     SLOSE48 – DECEMBER 2020
+
+
+
+
+                                  Figure 7-13. Stall Detection by Monitoring Motor Back-EMF
+
+The stall detection algorithm compares the back-EMF between the rising and falling current quadrants by
+monitoring PWM off time and generates a value represented by the torque count. The comparison is done in
+such a way that the torque count is practically independent of motor current, ambient temperature and supply
+voltage.
+For a lightly loaded motor, the torque count will be a non-zero value. As the motor approaches stall condition,
+torque count will approach zero and can be used to detect stall condition. If anytime torque count falls below the
+stall threshold, the device will detect a stall. In stalled condition, the motor shaft does not spin. The motor starts
+to spin again when the stall condition is removed.
+High motor coil resistance can result in low torque count. The ENABLE pin of the DRV8434A allows scaling up
+low torque count values, for ease of further processing. If the ENABLE pin is Hi-Z, the torque count and stall
+threshold are multiplied by a factor of 8. If the ENABLE pin is logic high, torque count and stall threshold retain
+the value originally calculated by the algorithm.
+The stall detection algorithm of the DRV8434A is configured by two digital IO and one analog IO pins -
+STL_MODE, STL_REP and TRQ_CNT/STL_TH.
+STL_MODE programs the stall detection mode. When this pin is logic low, stall threshold is computed by the
+driver or an external microcontroller (MCU). The TRQ_CNT/STL_TH pin outputs as torque count analog voltage.
+If the STL_MODE pin is open (Hi-Z), it enables the stall threshold learning process. If learning is successful, the
+TRQ_CNT/STL_TH pin outputs the stall threshold as an analog voltage. When the STL_MODE is logic high (tied
+to DVDD), stall threshold is set by applying a voltage on the TRQ_CNT/STL_TH pin. TRQ_CNT/STL_TH pin can
+act as both input or output, depending on the operating mode. An 1 nF capacitor must be connected from the
+
+Copyright © 2020 Texas Instruments Incorporated                                           Submit Document Feedback       23
+                                                  Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                                          www.ti.com
+
+TRQ_CNT/STL_TH pin to GND. Connecting a 330k resistor from STL_MODE pin to ground disables stall
+detection. Additionally, if any fault condition exists (UVLO, OCP, OL, OTSD etc.), stall detection will be disabled.
+STL_REP is an open-drain output. When STL_MODE = GND or DVDD, STL_REP is pulled low by the driver if
+there is no stall fault; and goes high if stall is detected. If STL_MODE = GND or DVDD and the STL_REP pin is
+pulled low externally, then stall fault reporting is disabled and nFAULT will not go low if a stall is detected. In stall
+threshold learning mode (STL_MODE = Hi-Z), if STL_REP goes from high to low, it indicates successful stall
+threshold learning. STL_REP must be pulled up with an external pull-up resistor.
+The following procedure describes the stall threshold learning operation:
+•     Before stall threshold learning, ensure that the motor speed has reached its target value. Do not learn stall
+      threshold while the motor speed is ramping up or down.
+•     Initiate learning by making the STL_MODE pin Hi-Z.
+•     Run motor with no load.
+•     Wait for 32 electrical cycles for the driver to learn the steady count.
+•     Stall the motor.
+•     Wait for 16 electrical cycles for the driver to learn the stall count.
+•     STL_REP will be pulled low if learning is successful.
+•     Stall threshold is calculated as the average of steady count and stall count.
+•     At the end of a successful learning, TRQ_CNT/STL_TH pin outputs the stall threshold as an analog voltage,
+      and also stores the value internally for use with Torque Count Mode.
+•     After successful learning, once device enters Torque Count mode or Stall Threshold mode by changing
+      STL_MODE logic level, STL_REP goes high, nFAULT is pulled down and the voltage on the TRQ_CNT/
+      STL_TH pin is reset.
+•     Apply nSLEEP reset pulse to pull down STL_REP and pull up nFAULT again.
+Sometimes the stall learning process might not be successful due to an unstable torque count while the motor is
+running or stalled. For example, when the motor has high coil resistance or is running at very high or low speeds,
+the torque count might vary a lot over time and the difference between steady count and stall count might be
+small. In such cases, it is recommended not to use the stall learning method. Instead, the user should carefully
+study the steady count and torque count across the range of operating conditions and set the threshold midway
+between the minimum steady count and the maximum stall count.
+When the motor is intially ramping up speed, it is recommended to configure the driver in either Torque Count
+Mode or Stall Threshold Mode. If the device is in Learning Mode during the initial ramp up, the learning process
+might result in a lower stall threshold value. Once steady state speed has been achieved, learning process can
+be initiated.
+Table 7-6 shows all the different operating modes in which stall can be detected.
+                                       Table 7-6. Stall Detection Operating Modes
+     Operating   STL_MO   TRQ_CNT/
+                                          STL_REP           nFAULT           Description
+      Mode         DE      STL_TH
+                                                                             This Mode supports two types of operations:
+                                                                             1. Standalone Stall Detection Mode: Driver takes care of stall
+                                                                             detection and reporting (this needs to be preceded by
+                                        Output:High:                         Learning Mode).
+                                                          If STL_REP >
+                          Torque count   Stall Fault                         2. MCU assisted Stall Detection Mode: MCU takes
+      Torque                                              1.6V, nFAULT
+                  GND      voltage as    Input:Low:                          TRQ_CNT/STL_TH voltage as input, compensates it for any
+    Count Mode                                           goes low when
+                             output    Stall Reporting                       second order effects, and compares it with its own stall
+                                                         stall is detected
+                                          Disabled                           threshold value to detect a stall. Because this operating mode
+                                                                             is external, the device stall reporting must be disabled. The
+                                                                             MCU could also run an algorithm to control VREF based on
+                                                                             the torque count.
+
+
+
+
+24      Submit Document Feedback                                                                  Copyright © 2020 Texas Instruments Incorporated
+
+                                                   Product Folder Links: DRV8434A
+                                                                                                                                       DRV8434A
+www.ti.com                                                                                                              SLOSE48 – DECEMBER 2020
+
+                                     Table 7-6. Stall Detection Operating Modes (continued)
+  Operating      STL_MO       TRQ_CNT/
+                                                  STL_REP          nFAULT           Description
+   Mode            DE          STL_TH
+                                                                                    1. Torque count learning result is available via the TRQ_CNT/
+                                             Output:High:
+                                                                                    STL_TH pin.
+                             Stall threshold Learning Not
+   Learning                                                                         2. In this mode, the motor must spin with no load for at least
+                    Hi-Z       voltage as       done            Not Applicable
+    Mode                                                                            32 electrical cycles, then stalled for at least 16 electrical
+                                 output      Low: learning
+                                                                                    cycles for the stall detection algorithm to determine the
+                                              Successful
+                                                                                    internal stall threshold.
+                                                                                    Torque count is noted from Torque Count Mode or Learning
+                                              Output:High:
+                                                                 If STL_REP >       Mode and a desired stall threshold voltage is applied to the
+     Stall                   Stall threshold   Stall Fault
+                                                                 1.6V, nFAULT       TRQ_CNT/STL_TH pin. The stall threshold voltage must be
+   Threshold      DVDD         voltage as      Input:Low:
+                                                                goes low when       less than the torque count noted from the Torque Count Mode.
+     Mode                         input      Stall Reporting
+                                                                stall is detected   Stall Threshold Mode must be selected while the motor is
+                                                Disabled
+                                                                                    spinning in Torque Count Mode.
+     Stall        330k to                         Output: Low                       Motor stall will be ignored until STL_MODE = 0 or 1.
+   Detection       GND
+   Disabled
+
+
+Figure 7-14 shows the flowchart of stall detection by the DRV8434A driver.
+
+
+
+
+Copyright © 2020 Texas Instruments Incorporated                                                                   Submit Document Feedback           25
+                                                           Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                    www.ti.com
+
+
+
+
+                             Figure 7-14. Flowchart of Stall Detection by DRV8434A
+
+
+
+26    Submit Document Feedback                                              Copyright © 2020 Texas Instruments Incorporated
+
+                                           Product Folder Links: DRV8434A
+                                                                                                                              DRV8434A
+www.ti.com                                                                                                      SLOSE48 – DECEMBER 2020
+
+
+7.3.9.5 Open-Load Detection (OL)
+If the winding current in any coil drops below the open load current threshold (I OL) and the I TRIP level set by the
+indexer, and if this condition persists for more than the open load detection time (t OL), an open-load condition is
+detected. Normal operation resumes when the open load condition is removed. The fault is cleared by an
+nSLEEP reset pulse or if the device is power cycled or comes out of sleep mode.
+7.3.9.6 Thermal Shutdown (OTSD)
+If the die temperature exceeds the thermal shutdown limit (T OTSD) all MOSFETs in the H-bridge are disabled,
+and the nFAULT pin is driven low. The charge pump is disabled during this condition. Normal operation resumes
+(motor-driver operation and the nFAULT line released) when the junction temperature falls below the
+overtemperature threshold limit minus the hysteresis (TOTSD – THYS_OTSD).
+Fault Condition Summary
+                                                  Table 7-7. Fault Condition Summary
+                                                              ERROR         H-       CHARGE
+      FAULT           CONDITION          CONFIGURATION                                             INDEXER     LOGIC       RECOVERY
+                                                              REPORT      BRIDGE      PUMP
+       VM                                                                                                        Reset
+                                                                                                                        Automatic: VM >
+   undervoltage       VM < VUVLO                  —            nFAULT     Disabled      Disabled   Disabled    (VDVDD <
+                                                                                                                            VUVLO
+     (UVLO)                                                                                                     3.9 V)
+       VCP
+                                                                                                               Operatin   Automatic: VCP
+   undervoltage       VCP < VCPUV                 —            nFAULT     Disabled   Operating     Operating
+                                                                                                                  g          > VCPUV
+     (CPUV)
+    Overcurrent                                                                                                Operatin   Automatic retry:
+                       IOUT > IOCP                —            nFAULT     Disabled   Operating     Operating
+      (OCP)                                                                                                       g           tRETRY
+                        No load                                                                                Operatin
+ Open Load (OL)                                   —            nFAULT    Operating   Operating     Operating                Report only
+                        detected                                                                                  g
+  Stall Detection      Stall / stuck                          STL_REP,                                         Operatin
+                                                  —                      Operating   Operating     Operating               Report Only
+     (STALL)              motor                                nFAULT                                             g
+      Thermal
+                                                                                                               Operatin Automatic: TJ <
+     Shutdown           TJ > TTSD                 —            nFAULT     Disabled      Disabled   Operating
+                                                                                                                  g    TOTSD - THYS_OTSD
+      (OTSD)
+
+
+7.4 Device Functional Modes
+7.4.1 Sleep Mode (nSLEEP = 0)
+
+The DRV8434A device state is managed by the nSLEEP pin. When the nSLEEP pin is low, the DRV8434A
+device enters a low-power sleep mode. In the sleep mode, all the internal MOSFETs are disabled and the charge
+pump is disabled. The t SLEEP time must elapse after a falling edge on the nSLEEP pin before the device enters
+sleep mode. The DRV8434A device is brought out of sleep automatically when the nSLEEP pin is high. The
+tWAKE time must elapse before the device is ready for inputs.
+7.4.2 Disable Mode (nSLEEP = 1, ENABLE = 0)
+The ENABLE pin is used to enable or disable the DRV8434A device. When the ENABLE pin is low, the output
+drivers are disabled and the output pins are in the Hi-Z state.
+7.4.3 Operating Mode (nSLEEP = 1, ENABLE = Hi-Z/1)
+When the nSLEEP pin is high, the ENABLE pin is Hi-Z or 1, and VM > UVLO, the device enters the active mode.
+The tWAKE time must elapse before the device is ready for inputs.
+7.4.4 nSLEEP Reset Pulse
+A latched fault can be cleared by an nSLEEP reset pulse. This pulse width must be greater than 20 µs and
+smaller than 40 µs. If nSLEEP is low for longer than 40 µs, but less than 120 µs, the faults are cleared and the
+device may or may not shutdown, as shown in the timing diagram (see Figure 7-15). This reset pulse does not
+affect the status of the charge pump or other functional blocks.
+
+
+Copyright © 2020 Texas Instruments Incorporated                                                          Submit Document Feedback            27
+                                                       Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                                  www.ti.com
+
+
+
+
+                                               Figure 7-15. nSLEEP Reset Pulse
+
+Functional Modes Summary
+Table 7-8 lists a summary of the functional modes.
+                                            Table 7-8. Functional Modes Summary
+                                                                           DVDD        CHARGE
+           CONDITION                 CONFIGURATION           H-BRIDGE                                   INDEXER            Logic
+                                                                          Regulator     PUMP
+                 4.5 V < VM <
+ Sleep mode                           nSLEEP pin = 0          Disabled     Disbaled    Disabled          Disabled        Disabled
+                     48 V
+                 4.5 V < VM <         nSLEEP pin = 1
+     Operating                                                Operating    Operating   Operating        Operating       Operating
+                     48 V          ENABLE pin = 1 or Hi-Z
+                 4.5 V < VM <         nSLEEP pin = 1
+     Disabled                                                 Disabled     Operating   Operating        Operating       Operating
+                     48 V             ENABLE pin = 0
+
+
+
+
+28      Submit Document Feedback                                                          Copyright © 2020 Texas Instruments Incorporated
+
+                                                    Product Folder Links: DRV8434A
+                                                                                                          DRV8434A
+www.ti.com                                                                                    SLOSE48 – DECEMBER 2020
+
+
+8 Application and Implementation
+                                                              Note
+       Information in the following applications sections is not part of the TI component specification, and TI
+       does not warrant its accuracy or completeness. TI’s customers are responsible for determining
+       suitability of components for their purposes. Customers should validate and test their design
+       implementation to confirm system functionality.
+
+8.1 Application Information
+The DRV8434A is used in bipolar stepper control.
+8.2 Typical Application
+The following design procedure can be used to configure the DRV8434A.
+
+
+
+
+                                Figure 8-1. Typical Application Schematic (HTSSOP package)
+
+
+
+
+Copyright © 2020 Texas Instruments Incorporated                                          Submit Document Feedback   29
+                                                  Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                          www.ti.com
+
+
+
+
+                             Figure 8-2. Typical Application Schematic (VQFN package)
+
+8.2.1 Design Requirements
+Table 8-1 lists the design input parameters for system design.
+                                             Table 8-1. Design Parameters
+                DESIGN PARAMETER                           REFERENCE            EXAMPLE VALUE
+                Supply voltage                                        VM                 24 V
+                Motor winding resistance                              RL             0.9 Ω/phase
+                Motor winding inductance                              LL            1.4 mH/phase
+                Motor full step angle                                θstep             1.8°/step
+                Target microstepping level                            nm               1/8 step
+                Target motor speed                                     v              18.75 rpm
+                Target full-scale current                             IFS                 2A
+
+
+8.2.2 Detailed Design Procedure
+8.2.2.1 Stepper Motor Speed
+The first step in configuring the DRV8434A requires the desired motor speed and microstepping level. If the
+target application requires a constant speed, then a square wave with frequency ƒ step must be applied to the
+STEP pin. If the target motor speed is too high, the motor does not spin. Make sure that the motor can support
+the target speed. Use Equation 1 to calculate ƒ step for a desired motor speed (v), microstepping level (n m), and
+motor full step angle (θstep)
+
+
+
+30    Submit Document Feedback                                                    Copyright © 2020 Texas Instruments Incorporated
+
+                                               Product Folder Links: DRV8434A
+                                                                                                                            DRV8434A
+www.ti.com                                                                                                      SLOSE48 – DECEMBER 2020
+
+
+                                                v (rpm) u 360 (q / rot)
+      ¦step VWHSV V
+                              Tstep (q / step) u nm (steps / microstep) u 60 (s / min)                                         (1)
+
+The value of θstep can be found in the stepper motor data sheet, or written on the motor. For example, the motor
+in this application is required to rotate at 1.8°/step for a target of 18.75 rpm at 1/8 microstep mode. Using
+Equation 1, ƒstep can be calculated as 500 Hz.
+The microstepping level is set by the M0 and M1 pins and can be any of the settings listed in Table 8-2. Higher
+microstepping results in a smoother motor motion and less audible noise, but requires a higher ƒ step to achieve
+the same motor speed.
+                                              Table 8-2. Microstepping Indexer Settings
+                                                  M0          M1                  STEP MODE
+                                                                          Full step (2-phase excitation)
+                                                  0            0
+                                                                                with 100% current
+                                                                          Full step (2-phase excitation)
+                                                  0      330 kΩ to GND
+                                                                                 with 71% current
+                                                  1            0              Non-circular 1/2 step
+                                              Hi-Z             0                    1/2 step
+                                                  0            1                    1/4 step
+                                                  1            1                    1/8 step
+                                              Hi-Z             1                    1/16 step
+                                                  0           Hi-Z                  1/32 step
+                                              Hi-Z       330 kΩ to GND              1/64 step
+                                              Hi-Z            Hi-Z                 1/128 step
+                                                  1           Hi-Z                 1/256 step
+
+
+8.2.2.2 Current Regulation
+In a stepper motor, the full-scale current (IFS) is the maximum current driven through either winding. This quantity
+depends on the VREF voltage and the TRQ_DAC setting, as shown in Equation 2.
+The maximum allowable voltage on the VREF pin is 3.3 V. DVDD can be used to provide VREF through
+aresistor divider.
+During stepping, IFS defines the current chopping threshold (ITRIP) for the maximum current step.
+
+
+                                                                                                                               (2)
+
+8.2.2.3 Decay Mode
+The DRV8434A operates with smart tune ripple control decay mode. When a motor winding current has hit the
+current chopping threshold (ITRIP), the DRV8434A places the winding in slow decay.
+
+
+
+
+Copyright © 2020 Texas Instruments Incorporated                                                            Submit Document Feedback   31
+                                                       Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                        www.ti.com
+
+8.2.2.4 Application Curves
+
+
+
+
+      Figure 8-3. 1/8 Microstepping With smart tune           Figure 8-4. 1/8 Microstepping With smart tune
+                   Ripple Control Decay                                       Dynamic Decay
+
+
+
+
+     Figure 8-5. 1/32 Microstepping With smart tune          Figure 8-6. 1/32 Microstepping With smart tune
+                   Ripple Control Decay                                      Dynamic Decay
+
+
+
+
+     Figure 8-7. 1/256 Microstepping With smart tune        Figure 8-8. 1/256 Microstepping With smart tune
+                   Ripple Control Decay                                      Dynamic Decay
+
+8.2.2.5 Thermal Application
+This section presents the power dissipation calculation and junction temperature estimation of the device.
+8.2.2.5.1 Power Dissipation
+The total power dissipation constitutes of three main components - conduction loss (PCOND), switching loss
+(PSW) and power loss due to quiescent current consumption (PQ).
+
+
+
+
+32     Submit Document Feedback                                                 Copyright © 2020 Texas Instruments Incorporated
+
+                                           Product Folder Links: DRV8434A
+                                                                                                                      DRV8434A
+www.ti.com                                                                                                SLOSE48 – DECEMBER 2020
+
+
+8.2.2.5.2 Conduction Loss
+The current path for a motor connected in full-bridge is through the high-side FET of one half-bridge and low-side
+FET of the other half-bridge. The conduction loss (P COND) depends on the motor rms current (I RMS) and high-
+side (RDS(ONH)) and low-side (RDS(ONL)) on-state resistances as shown in Equation 3.
+
+           PCOND = 2 x (IRMS)2 x (RDS(ONH) + RDS(ONL))                                                                   (3)
+
+The conduction loss for the typical application shown in Typical Application is calculated in Equation 4.
+
+           PCOND = 2 x (IRMS)2 x (RDS(ONH) + RDS(ONL)) = 2 x (2-A / √2)2 x (0.165-Ω + 0.165-Ω) = 1.32-W                  (4)
+
+                                                              Note
+       This power calculation is highly dependent on the device temperature which significantly effects the
+       high-side and low-side on-resistance of the FETs. For more accurate calculation, consider the
+       dependency of on-resistance of FETs with device temperature.
+
+8.2.2.5.3 Switching Loss
+The power loss due to the PWM switching frequency depends on the slew rate (tSR), supply voltage, motor RMS
+current and the PWM switching frequency. The switching losses in each H-bridge during rise-time and fall-time
+are calculated as shown in Equation 5 and Equation 6.
+
+           PSW_RISE = 0.5 x VVM x IRMS x tRISE_PWM x fPWM                                                                (5)
+
+           PSW_FALL = 0.5 x VVM x IRMS x tFALL_PWM x fPWM                                                                (6)
+
+Both t RISE_PWM and t FALL_PWM can be approximated as V VM/ t SR. After substituting the values of various
+parameters, and assuming 30-kHz PWM frequency, the switching losses in each H-bridge are calculated as
+shown below -
+
+           PSW_RISE = 0.5 x 24-V x (2-A / √2) x (24-V / 240 V/µs) x 30-kHz = 0.05-W                                      (7)
+
+           PSW_FALL = 0.5 x 24-V x (1-A / √2) x (24-V / 240 V/µs) x 30-kHz = 0.05-W                                      (8)
+
+The total switching loss for the stepper motor driver (PSW) is calculated as twice the sum of rise-time (PSW_RISE)
+switching loss and fall-time (PSW_FALL) switching loss as shown below -
+
+           PSW = 2 x (PSW_RISE + PSW_FALL) = 2 x (0.05-W + 0.05-W) = 0.2-W                                               (9)
+
+                                                              Note
+       The rise-time (t RISE) and the fall-time (t FALL) are calculated based on typical values of the slew rate
+       (t SR). This parameter is expected to change based on the supply-voltage, temperature and device to
+       device variation.
+       The switching loss is directly proportional to the PWM switching frequency. The PWM frequency in an
+       application will depend on the supply voltage, inductance of the motor coil, back emf voltage and OFF
+       time or the ripple current (for smart tune ripple control decay mode).
+
+8.2.2.5.4 Power Dissipation Due to Quiescent Current
+The power dissipation due to the quiescent current consumed by the power supply is calculated as shown below
+-
+
+           PQ = VVM x IVM                                                                                                (10)
+
+Substituting the values, quiescent power loss can be calculated as shown below -
+
+
+Copyright © 2020 Texas Instruments Incorporated                                                  Submit Document Feedback       33
+                                                  Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                         www.ti.com
+
+         PQ = 24-V x 5-mA = 0.12-W                                                                                  (11)
+
+                                                         Note
+      The quiescent power loss is calculated using the typical operating supply current (I VM) which is
+      dependent on supply-voltage, temperature and device to device variation.
+
+8.2.2.5.5 Total Power Dissipation
+The total power dissipation (P TOT) is calculated as the sum of conduction loss, switching loss and the quiescent
+power loss as shown in Equation 12.
+
+         PTOT = PCOND + PSW + PQ = 1.32-W + 0.2-W + 0.12-W = 1.64-W                                                 (12)
+
+8.2.2.5.6 Device Junction Temperature Estimation
+For an ambient temperature of T A and total power dissipation (P TOT), the junction temperature (T J) is calculated
+as -
+TJ = TA + (PTOT x RθJA)
+Considering a JEDEC standard 4-layer PCB, the junction-to-ambient thermal resistance (R θJA) is 29.7 °C/W for
+the HTSSOP package and 39 °C/W for the VQFN package.
+Assuming 25°C ambient temperature, the junction temperature for the HTSSOP package is calculated as shown
+below -
+
+         TJ = 25°C + (1.64-W x 29.7°C/W) = 73.71°C                                                                  (13)
+
+The junction temperature for the VQFN package is calculated as shown below -
+
+         TJ = 25°C + (1.64-W x 39°C/W) = 88.96 °C                                                                   (14)
+
+
+
+
+34    Submit Document Feedback                                                   Copyright © 2020 Texas Instruments Incorporated
+
+                                             Product Folder Links: DRV8434A
+                                                                                                                                     DRV8434A
+www.ti.com                                                                                                          SLOSE48 – DECEMBER 2020
+
+
+9 Power Supply Recommendations
+The device is designed to operate from an input voltage supply (VM) range from 4.5 V to 48 V. A 0.01-µF
+ceramic capacitor rated for VM must be placed at each VM pin as close to the device as possible. In addition, a
+bulk capacitor must be included on VM.
+9.1 Bulk Capacitance
+Having appropriate local bulk capacitance is an important factor in motor drive system design. It is generally
+beneficial to have more bulk capacitance, while the disadvantages are increased cost and physical size.
+The amount of local capacitance needed depends on a variety of factors, including:
+•    The highest current required by the motor system
+•    The power supply’s capacitance and ability to source current
+•    The amount of parasitic inductance between the power supply and motor system
+•    The acceptable voltage ripple
+•    The type of motor used (brushed DC, brushless DC, stepper)
+•    The motor braking method
+The inductance between the power supply and motor drive system will limit the rate current can change from the
+power supply. If the local bulk capacitance is too small, the system will respond to excessive current demands or
+dumps from the motor with a change in voltage. When adequate bulk capacitance is used, the motor voltage
+remains stable and high current can be quickly supplied.
+The data sheet generally provides a recommended value, but system-level testing is required to determine the
+appropriate sized bulk capacitor.
+The voltage rating for bulk capacitors should be higher than the operating voltage, to provide margin for cases
+when the motor transfers energy to the supply.
+
+                                                  Parasitic Wire
+                                                   Inductance
+                    Power Supply                                                   Motor Drive System
+
+                                                                                                        VM
+
+
+
+                             +                                               +                                    Motor
+                             ±                                                                                    Driver
+
+                                                                                                       GND
+
+
+                                                                          Local               IC Bypass
+                                                                      Bulk Capacitor          Capacitor
+
+                                                                                  Copyright © 2016, Texas Instruments Incorporated
+
+                    Figure 9-1. Example Setup of Motor Drive System With External Power Supply
+
+
+
+
+Copyright © 2020 Texas Instruments Incorporated                                                              Submit Document Feedback       35
+                                                        Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                     www.ti.com
+
+
+10 Layout
+10.1 Layout Guidelines
+The VM pin should be bypassed to PGND using a low-ESR ceramic bypass capacitor with a recommended
+value of 0.01 µF rated for VM. This capacitor should be placed as close to the VM pin as possible with a thick
+trace or ground plane connection to the device PGND pin.
+The VM pin must be bypassed to ground using a bulk capacitor rated for VM. This component can be an
+electrolytic capacitor.
+A low-ESR ceramic capacitor must be placed in between the CPL and CPH pins. A value of 0.022 µF rated for
+VM is recommended. Place this component as close to the pins as possible.
+A low-ESR ceramic capacitor must be placed in between the VM and VCP pins. A value of 0.22 µF rated for 16
+V is recommended. Place this component as close to the pins as possible.
+Bypass the DVDD pin to ground with a low-ESR ceramic capacitor. A value of 0.47 µF rated for 6.3 V is
+recommended. Place this bypassing capacitor as close to the pin as possible..
+10.2 Layout Example
+
+
+
+
+                                   Figure 10-1. HTSSOP Layout Example
+
+
+
+
+36    Submit Document Feedback                                               Copyright © 2020 Texas Instruments Incorporated
+
+                                          Product Folder Links: DRV8434A
+                                                                                                        DRV8434A
+www.ti.com                                                                                  SLOSE48 – DECEMBER 2020
+
+
+
+
+                                                  Figure 10-2. QFN Layout Example
+
+
+
+
+Copyright © 2020 Texas Instruments Incorporated                                        Submit Document Feedback   37
+                                                      Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                                       www.ti.com
+
+
+11 Device and Documentation Support
+11.1 Receiving Notification of Documentation Updates
+To receive notification of documentation updates, navigate to the device product folder on ti.com. Click on
+Subscribe to updates to register and receive a weekly digest of any product information that has changed. For
+change details, review the revision history included in any revised document.
+11.2 Support Resources
+TI E2E™ support forums are an engineer's go-to source for fast, verified answers and design help — straight
+from the experts. Search existing answers or ask your own question to get the quick design help you need.
+Linked content is provided "AS IS" by the respective contributors. They do not constitute TI specifications and do
+not necessarily reflect TI's views; see TI's Terms of Use.
+11.3 Trademarks
+TI E2E™ is a trademark of Texas Instruments.
+All trademarks are the property of their respective owners.
+11.4 Electrostatic Discharge Caution
+                This integrated circuit can be damaged by ESD. Texas Instruments recommends that all integrated circuits be handled
+                with appropriate precautions. Failure to observe proper handling and installation procedures can cause damage.
+                ESD damage can range from subtle performance degradation to complete device failure. Precision integrated circuits may
+                be more susceptible to damage because very small parametric changes could cause the device not to meet its published
+                specifications.
+
+
+11.5 Glossary
+ TI Glossary         This glossary lists and explains terms, acronyms, and definitions.
+
+
+
+
+38    Submit Document Feedback                                                                 Copyright © 2020 Texas Instruments Incorporated
+
+                                                  Product Folder Links: DRV8434A
+                                                                                                       DRV8434A
+www.ti.com                                                                                 SLOSE48 – DECEMBER 2020
+
+
+12 Mechanical, Packaging, and Orderable Information
+The following pages include mechanical, packaging, and orderable information. This information is the most
+current data available for the designated devices. This data is subject to change without notice and revision of
+this document. For browser-based versions of this data sheet, refer to the left-hand navigation.
+
+
+
+
+Copyright © 2020 Texas Instruments Incorporated                                      Submit Document Feedback      39
+                                                  Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                                                                             www.ti.com
+
+                                                                                                                            PACKAGE OUTLINE
+          RGE0024B                                                              SCALE 3.000
+                                                                                                                           VQFN - 1 mm max height
+                                                                                                                            PLASTIC QUAD FLATPACK - NO LEAD
+
+
+
+
+                                                                   4.1                                      B
+                                           A
+                                                                   3.9
+
+
+
+                                                                                                                                                    0.5
+                                                                                                                                                    0.3
+
+                       PIN 1 INDEX AREA
+                                                                                                           4.1
+                                                                                                           3.9
+                                                                                                                               0.3
+                                                                                                                               0.2
+
+                                                                                                                                         DETAIL
+                                                                                                                                 OPTIONAL TERMINAL
+                                                                                                                                      TYPICAL
+
+
+
+
+                                                                                                                 C
+                                1 MAX
+
+                                                                                                                      SEATING PLANE
+                                  0.05
+                                  0.00                                                                                0.08 C
+
+
+                                                               2X 2.5
+                                                               2.45 0.1                                                                            (0.2) TYP
+                                                    7                                          12
+                                                                                                           EXPOSED
+                     SEE TERMINAL
+                                                                                                           THERMAL PAD
+                           DETAIL
+                                               6                                                     13
+
+
+
+                                     2X                       25                                            SYMM
+                                     2.5
+
+
+
+
+                                               1                                                     18
+                                                                                                                        0.3
+                               20X 0.5                                                                           24X
+                                                                                                                        0.2
+                                                     24                                       19                     0.1    C A B
+                                                               SYMM
+                                   PIN 1 ID
+                                (OPTIONAL)                                                                           0.05
+                                                                               0.5
+                                                                         24X
+                                                                               0.3
+
+
+                                                                                                                                                  4219013/A 05/2017
+
+         NOTES:
+
+         1. All linear dimensions are in millimeters. Any dimensions in parenthesis are for reference only. Dimensioning and tolerancing
+            per ASME Y14.5M.
+         2. This drawing is subject to change without notice.
+         3. The package thermal pad must be soldered to the printed circuit board for thermal and mechanical performance.
+
+
+
+
+                                                                                              www.ti.com
+
+
+
+
+40    Submit Document Feedback                                                                                                       Copyright © 2020 Texas Instruments Incorporated
+
+                                                          Product Folder Links: DRV8434A
+                                                                                                                                                         DRV8434A
+www.ti.com                                                                                                                                  SLOSE48 – DECEMBER 2020
+
+                                                                                                    EXAMPLE BOARD LAYOUT
+             RGE0024B                                                                                               VQFN - 1 mm max height
+                                                                                                                    PLASTIC QUAD FLATPACK - NO LEAD
+
+
+
+
+                                                                               ( 2.45)
+                                                                                SYMM
+
+                                                                24                                  19
+                                          24X (0.6)
+
+                                                       1
+                                                                                                               18
+
+                                     24X (0.25)
+
+                                        (R0.05)
+                                           TYP                                25                                    SYMM
+
+                                                                                                                           (3.8)
+
+
+
+                                          20X (0.5)
+                                                                                                               13
+                                                       6
+
+                                         ( 0.2) TYP
+                                                 VIA
+                                                                   7                               12
+                                                                     (0.975) TYP
+
+                                                                                   (3.8)
+
+
+                                                                LAND PATTERN EXAMPLE
+                                                                     EXPOSED METAL SHOWN
+                                                                           SCALE:15X
+
+
+
+
+                                         0.07 MAX                                                    0.07 MIN
+                                     ALL AROUND                                                  ALL AROUND
+
+                                                                                                                             SOLDER MASK
+                                                                  METAL                                                      OPENING
+
+
+                                EXPOSED                                                      EXPOSED
+                                  METAL                            SOLDER MASK                                                 METAL UNDER
+                                                                   OPENING                     METAL                           SOLDER MASK
+
+                                            NON SOLDER MASK
+                                                                                                           SOLDER MASK
+                                                DEFINED
+                                                                                                             DEFINED
+                                              (PREFERRED)
+
+                                                                        SOLDER MASK DETAILS
+                                                                                                                                         4219013/A 05/2017
+            NOTES: (continued)
+
+            4. This package is designed to be soldered to a thermal pad on the board. For more information, see Texas Instruments literature
+               number SLUA271 (www.ti.com/lit/slua271).
+            5. Vias are optional depending on application, refer to device data sheet. If any vias are implemented, refer to their locations shown
+               on this view. It is recommended that vias under paste be filled, plugged or tented.
+
+
+
+
+                                                                                      www.ti.com
+
+
+
+
+Copyright © 2020 Texas Instruments Incorporated                                                                                    Submit Document Feedback       41
+                                                                 Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                                                         www.ti.com
+
+                                                                                          EXAMPLE STENCIL DESIGN
+          RGE0024B                                                                                     VQFN - 1 mm max height
+                                                                                                        PLASTIC QUAD FLATPACK - NO LEAD
+
+
+
+
+                                                                4X ( 1.08)
+                                                                                          (0.64) TYP
+                                                         24                                     19
+
+
+                               24X (0.6)
+
+                                            1
+                                                                       25
+                                                                                                                18
+
+                            24X (0.25)
+
+
+                         (R0.05) TYP                                                                                 (0.64)
+                                                                                                                      TYP
+                                  SYMM
+
+                                                                                                                              (3.8)
+
+
+
+
+                                20X (0.5)
+                                                                                                                13
+                                            6
+
+
+                                     METAL
+                                     TYP
+
+                                                          7                                     12
+                                                                             SYMM
+
+
+                                                                             (3.8)
+
+
+                                                               SOLDER PASTE EXAMPLE
+                                                              BASED ON 0.125 mm THICK STENCIL
+
+                                                                  EXPOSED PAD 25
+                                                78% PRINTED SOLDER COVERAGE BY AREA UNDER PACKAGE
+                                                                     SCALE:20X
+
+
+
+
+                                                                                                                                4219013/A 05/2017
+
+         NOTES: (continued)
+
+         6. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate
+           design recommendations.
+
+
+
+
+                                                                             www.ti.com
+
+
+
+
+42    Submit Document Feedback                                                                                Copyright © 2020 Texas Instruments Incorporated
+
+                                                          Product Folder Links: DRV8434A
+                                                                                                                                                               DRV8434A
+www.ti.com                                                                                                                                      SLOSE48 – DECEMBER 2020
+
+
+                                                                                                                         PACKAGE OUTLINE
+             PWP0028M                                                SCALE 2.000
+                                                                                                             TM
+                                                                                              PowerPAD TSSOP - 1.2 mm max height
+                                                                                                                                  SMALL OUTLINE PACKAGE
+
+
+                                                    6.6                                                              C
+                                                        TYP
+                                 A                  6.2
+                                                        PIN 1 INDEX                                           0.1 C
+                                                        AREA                                                                         SEATING
+                                                                                         26X 0.65                                    PLANE
+                                                                                   28
+                                         1
+
+
+
+
+                                                                                         2X
+                               9.8
+                                                                                        8.45
+                               9.6
+                              NOTE 3
+
+
+
+
+                                        14
+                                                                                   15
+                                                                                                0.30
+                                                                                          28X
+                                                      4.5                                       0.19
+                                     B
+                                                      4.3                                      0.1   C A B
+
+                   SEE DETAIL A
+                                                                                         (0.15) TYP
+
+
+
+                                     2X 0.82 MAX
+                                          NOTE 5
+
+                                        14                                         15
+                                                                                         2X 0.825 MAX
+                                                                                         NOTE 5
+
+                                                                                                      0.25
+                                                                                               GAGE PLANE                                            1.2 MAX
+                                 4.05
+                                 3.53
+                                                                                        THERMAL
+                                                                                        PAD
+                                                                                                                         0.75                          0.15
+                                                                                                    0 -8                 0.50                          0.05
+                                                                                                                                   DETAIL A
+                                                                                                                                       A 20
+
+
+
+
+                                                                                                                                    TYPICAL
+                                         1                                         28
+
+                                                      3.10
+                                                      2.58
+                                                                                                                                              4224480/A 08/2018
+                                                                                                                  PowerPAD is a trademark of Texas Instruments.
+            NOTES:
+
+            1. All linear dimensions are in millimeters. Any dimensions in parenthesis are for reference only. Dimensioning and tolerancing
+               per ASME Y14.5M.
+            2. This drawing is subject to change without notice.
+            3. This dimension does not include mold flash, protrusions, or gate burrs. Mold flash, protrusions, or gate burrs shall not
+               exceed 0.15 mm per side.
+            4. Reference JEDEC registration MO-153.
+            5. Features may differ or may not be present.
+
+
+
+
+                                                                                         www.ti.com
+
+
+
+
+Copyright © 2020 Texas Instruments Incorporated                                                                                       Submit Document Feedback        43
+                                                              Product Folder Links: DRV8434A
+DRV8434A
+SLOSE48 – DECEMBER 2020                                                                                                                                   www.ti.com
+
+                                                                                                  EXAMPLE BOARD LAYOUT
+          PWP0028M                                                                                      TM
+                                                                                      PowerPAD TSSOP - 1.2 mm max height
+                                                                                                                               SMALL OUTLINE PACKAGE
+
+
+
+                                                                                   (3.4)
+                                                                                  NOTE 9
+                                                                                   (3.1)
+                                                                                  SYMM                 METAL COVERED
+                                           28X (1.5)
+                                                                                                       BY SOLDER MASK
+
+                                                        1
+                                           28X (0.45)                                                        28
+                                                                                                                      SEE DETAILS
+
+
+                                    (R0.05) TYP
+
+
+
+                                         26X (0.65)
+                                                                                                                              (4.05)
+
+                                   SYMM                                                                                  (0.6)
+                                                                                                                                        (9.7)
+                                                                                                                                       NOTE 9
+
+                                   SOLDER MASK                                                                    (1.2) TYP
+                                    DEFINED PAD
+
+
+                                       ( 0.2) TYP
+                                               VIA
+
+
+                                                       14                                                    15
+
+
+                                                                                           (1.2) TYP
+
+                                                                                   (5.8)
+
+
+                                                              LAND PATTERN EXAMPLE
+                                                                  EXPOSED METAL SHOWN
+                                                                        SCALE: 8X
+
+                           SOLDER MASK                                                      METAL UNDER                       SOLDER MASK
+                                                            METAL
+                               OPENING                                                      SOLDER MASK                       OPENING
+
+
+                  EXPOSED METAL                                                                                                         EXPOSED METAL
+
+                                              0.05 MAX                                                             0.05 MIN
+                                              ALL AROUND                                                           ALL AROUND
+
+                                       NON-SOLDER MASK                                                       SOLDER MASK
+                                           DEFINED                                                             DEFINED
+                                         (PREFERRED)
+                                                                 SOLDER MASK DETAILS
+                                                                         15.000
+
+
+
+
+                                                                                                                                          4224480/A 08/2018
+          NOTES: (continued)
+
+           6. Publication IPC-7351 may have alternate designs.
+           7. Solder mask tolerances between and around signal pads can vary based on board fabrication site.
+           8. This package is designed to be soldered to a thermal pad on the board. For more information, see Texas Instruments literature
+              numbers SLMA002 (www.ti.com/lit/slma002) and SLMA004 (www.ti.com/lit/slma004).
+           9. Size of metal pad may vary due to creepage requirement.
+          10. Vias are optional depending on application, refer to device data sheet. It is recommended that vias under paste be filled, plugged
+              or tented.
+
+
+
+
+                                                                                   www.ti.com
+
+
+
+
+44    Submit Document Feedback                                                                                          Copyright © 2020 Texas Instruments Incorporated
+
+                                                            Product Folder Links: DRV8434A
+                                                                                                                                                 DRV8434A
+www.ti.com                                                                                                                       SLOSE48 – DECEMBER 2020
+
+                                                                                          EXAMPLE STENCIL DESIGN
+             PWP0028M                                                                            TM
+                                                                                PowerPAD TSSOP - 1.2 mm max height
+                                                                                                                     SMALL OUTLINE PACKAGE
+
+
+
+                                                                              (3.1)
+                                                                           BASED ON
+                                             28X (1.5)                    0.125 THICK         METAL COVERED
+                                                                            STENCIL           BY SOLDER MASK
+                                                         1
+                                            28X (0.45)                                                28
+
+
+
+                                     (R0.05) TYP
+
+
+
+                                            26X (0.65)
+
+                                       SYMM                                                                    (4.05)
+                                                                                                             BASED ON
+                                                                                                            0.125 THICK
+                                                                                                              STENCIL
+
+
+
+
+                                                         14                                            15
+
+
+                                                                            SYMM                       SEE TABLE FOR
+                                                                                                       DIFFERENT OPENINGS
+                                                                                                       FOR OTHER STENCIL
+                                                                             (5.8)                     THICKNESSES
+
+
+                                                                SOLDER PASTE EXAMPLE
+                                                              BASED ON 0.125 mm THICK STENCIL
+                                                                         SCALE: 8X
+
+                                                               STENCIL         SOLDER STENCIL
+                                                              THICKNESS           OPENING
+                                                                   0.1             3.47 X 4.53
+                                                                 0.125        3.10 X 4.05 (SHOWN)
+                                                                  0.15             2.83 X 3.70
+                                                                 0.175             2.62 X 3.42
+
+
+
+
+                                                                                                                              4224480/A 08/2018
+            NOTES: (continued)
+
+            11. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate
+                design recommendations.
+            12. Board assembly site may have different recommendations for stencil design.
+
+
+
+
+                                                                             www.ti.com
+
+
+
+
+Copyright © 2020 Texas Instruments Incorporated                                                                           Submit Document Feedback      45
+                                                              Product Folder Links: DRV8434A
+                                                                                                                                                                      PACKAGE OPTION ADDENDUM
+
+       www.ti.com                                                                                                                                                                                                    9-Nov-2025
+
+
+
+
+PACKAGING INFORMATION
+
+       Orderable part number          Status     Material type      Package | Pins      Package qty | Carrier        RoHS             Lead finish/              MSL rating/               Op temp (°C)          Part marking
+                                        (1)            (2)                                                             (3)            Ball material             Peak reflow                                           (6)
+                                                                                                                                            (4)                      (5)
+
+          DRV8434APWPR                Active      Production     HTSSOP (PWP) | 28       2500 | LARGE T&R             Yes                NIPDAU            Level-3-260C-168 HR             -40 to 125            DRV8434A
+         DRV8434APWPR.A               Active      Production     HTSSOP (PWP) | 28       2500 | LARGE T&R             Yes                NIPDAU            Level-3-260C-168 HR             -40 to 125            DRV8434A
+          DRV8434ARGER                Active      Production       VQFN (RGE) | 24       3000 | LARGE T&R             Yes                NIPDAU            Level-1-260C-UNLIM              -40 to 125                DRV
+                                                                                                                                                                                                                    8434A
+         DRV8434ARGER.A               Active      Production       VQFN (RGE) | 24       3000 | LARGE T&R             Yes                NIPDAU            Level-1-260C-UNLIM              -40 to 125                DRV
+                                                                                                                                                                                                                    8434A
+
+(1)
+      Status: For more details on status, see our product life cycle.
+
+(2)
+   Material type: When designated, preproduction parts are prototypes/experimental devices, and are not yet approved or released for full production. Testing and final process, including without limitation quality assurance,
+reliability performance testing, and/or process qualification, may not yet be complete, and this item is subject to further changes or possible discontinuation. If available for ordering, purchases will be subject to an additional
+waiver at checkout, and are intended for early internal evaluation purposes only. These items are sold without warranties of any kind.
+
+(3)
+      RoHS values: Yes, No, RoHS Exempt. See the TI RoHS Statement for additional information and value definition.
+
+(4)
+   Lead finish/Ball material: Parts may have multiple material finish options. Finish options are separated by a vertical ruled line. Lead finish/Ball material values may wrap to two lines if the finish value exceeds the maximum
+column width.
+
+(5)
+  MSL rating/Peak reflow: The moisture sensitivity level ratings and peak solder (reflow) temperatures. In the event that a part has multiple moisture sensitivity ratings, only the lowest level per JEDEC standards is shown.
+Refer to the shipping label for the actual reflow temperature that will be used to mount the part to the printed circuit board.
+
+(6)
+      Part marking: There may be an additional marking, which relates to the logo, the lot trace code information, or the environmental category of the part.
+
+Multiple part markings will be inside parentheses. Only one part marking contained in parentheses and separated by a "~" will appear on a part. If a line is indented then it is a continuation of the previous line and the two
+combined represent the entire part marking for that device.
+
+Important Information and Disclaimer:The information provided on this page represents TI's knowledge and belief as of the date that it is provided. TI bases its knowledge and belief on information provided by third parties, and
+makes no representation or warranty as to the accuracy of such information. Efforts are underway to better integrate information from third parties. TI has taken and continues to take reasonable steps to provide representative
+and accurate information but may not have conducted destructive testing or chemical analysis on incoming materials and chemicals. TI and TI suppliers consider certain information to be proprietary, and thus CAS numbers
+and other limited information may not be available for release.
+
+In no event shall TI's liability arising out of such information exceed the total purchase price of the TI part(s) at issue in this document sold by TI to Customer on an annual basis.
+
+
+
+
+                                                                                                          Addendum-Page 1
+                                                                                                                          PACKAGE OPTION ADDENDUM
+
+   www.ti.com                                                                                                                               9-Nov-2025
+
+
+
+
+OTHER QUALIFIED VERSIONS OF DRV8434A :
+
+• Automotive : DRV8434A-Q1
+
+NOTE: Qualified Version Definitions:
+
+       • Automotive - Q100 devices qualified for high-reliability automotive applications targeting zero defects
+
+
+
+
+                                                                                                        Addendum-Page 2
+                                                                    GENERIC PACKAGE VIEW
+RGE 24                                                             VQFN - 1 mm max height
+                                                                           PLASTIC QUAD FLATPACK - NO LEAD
+
+
+
+
+  Images above are just a representation of the package family, actual package may vary.
+  Refer to the product data sheet for package details.
+
+                                                                                                 4204104/H
+                                                                                                                   PACKAGE OUTLINE
+ RGE0024B                                                              SCALE 3.000
+                                                                                                                  VQFN - 1 mm max height
+                                                                                                                   PLASTIC QUAD FLATPACK - NO LEAD
+
+
+
+
+                                                          4.1                                      B
+                                  A
+                                                          3.9
+
+
+
+                                                                                                                                       0.5
+                                                                                                                                       0.3
+
+              PIN 1 INDEX AREA
+                                                                                                  4.1
+                                                                                                  3.9
+                                                                                                                      0.3
+                                                                                                                      0.2
+
+                                                                                                                             DETAIL
+                                                                                                                        OPTIONAL TERMINAL
+                                                                                                                             TYPICAL
+
+
+
+
+                                                                                                        C
+                       1 MAX
+
+                                                                                                             SEATING PLANE
+                        0.05
+                        0.00                                                                                 0.08 C
+
+
+                                                     2X 2.5
+                                                      2.45 0.1                                                                        (0.2) TYP
+                                           7                                          12
+                                                                                                  EXPOSED
+            SEE TERMINAL
+                                                                                                  THERMAL PAD
+                  DETAIL
+                                      6                                                     13
+
+
+
+                            2X                       25                                            SYMM
+                            2.5
+
+
+
+
+                                      1                                                     18
+                                                                                                               0.3
+                      20X 0.5                                                                           24X
+                                                                                                               0.2
+                                            24                                       19                     0.1    C A B
+                                                      SYMM
+                         PIN 1 ID
+                      (OPTIONAL)                                                                            0.05
+                                                                      0.5
+                                                                24X
+                                                                      0.3
+
+
+                                                                                                                                   4219013/A 05/2017
+
+NOTES:
+
+1. All linear dimensions are in millimeters. Any dimensions in parenthesis are for reference only. Dimensioning and tolerancing
+   per ASME Y14.5M.
+2. This drawing is subject to change without notice.
+3. The package thermal pad must be soldered to the printed circuit board for thermal and mechanical performance.
+
+
+
+
+                                                                                     www.ti.com
+                                                                                            EXAMPLE BOARD LAYOUT
+ RGE0024B                                                                                               VQFN - 1 mm max height
+                                                                                                        PLASTIC QUAD FLATPACK - NO LEAD
+
+
+
+
+                                                                   ( 2.45)
+                                                                    SYMM
+
+                                                    24                                  19
+                              24X (0.6)
+
+                                           1
+                                                                                                   18
+
+                         24X (0.25)
+
+                            (R0.05)
+                               TYP                                25                                    SYMM
+
+                                                                                                               (3.8)
+
+
+
+                              20X (0.5)
+                                                                                                   13
+                                           6
+
+                             ( 0.2) TYP
+                                     VIA
+                                                       7                               12
+                                                         (0.975) TYP
+
+                                                                       (3.8)
+
+
+                                                    LAND PATTERN EXAMPLE
+                                                         EXPOSED METAL SHOWN
+                                                              SCALE:15X
+
+
+
+
+                             0.07 MAX                                                    0.07 MIN
+                         ALL AROUND                                                  ALL AROUND
+
+                                                                                                                 SOLDER MASK
+                                                      METAL                                                      OPENING
+
+
+                    EXPOSED                                                      EXPOSED
+                      METAL                            SOLDER MASK                                                 METAL UNDER
+                                                       OPENING                     METAL                           SOLDER MASK
+
+                                NON SOLDER MASK
+                                                                                               SOLDER MASK
+                                    DEFINED
+                                                                                                 DEFINED
+                                  (PREFERRED)
+
+                                                            SOLDER MASK DETAILS
+                                                                                                                             4219013/A 05/2017
+NOTES: (continued)
+
+4. This package is designed to be soldered to a thermal pad on the board. For more information, see Texas Instruments literature
+   number SLUA271 (www.ti.com/lit/slua271).
+5. Vias are optional depending on application, refer to device data sheet. If any vias are implemented, refer to their locations shown
+   on this view. It is recommended that vias under paste be filled, plugged or tented.
+
+
+
+
+                                                                          www.ti.com
+                                                                                 EXAMPLE STENCIL DESIGN
+ RGE0024B                                                                                     VQFN - 1 mm max height
+                                                                                               PLASTIC QUAD FLATPACK - NO LEAD
+
+
+
+
+                                                       4X ( 1.08)
+                                                                                 (0.64) TYP
+                                                24                                     19
+
+
+                       24X (0.6)
+
+                                   1
+                                                              25
+                                                                                                       18
+
+                   24X (0.25)
+
+
+                (R0.05) TYP                                                                                 (0.64)
+                                                                                                             TYP
+                         SYMM
+
+                                                                                                                     (3.8)
+
+
+
+
+                       20X (0.5)
+                                                                                                       13
+                                   6
+
+
+                            METAL
+                            TYP
+
+                                                 7                                     12
+                                                                    SYMM
+
+
+                                                                    (3.8)
+
+
+                                                      SOLDER PASTE EXAMPLE
+                                                     BASED ON 0.125 mm THICK STENCIL
+
+                                                         EXPOSED PAD 25
+                                       78% PRINTED SOLDER COVERAGE BY AREA UNDER PACKAGE
+                                                            SCALE:20X
+
+
+
+
+                                                                                                                       4219013/A 05/2017
+
+NOTES: (continued)
+
+6. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate
+  design recommendations.
+
+
+
+
+                                                                    www.ti.com
+                                                                  GENERIC PACKAGE VIEW
+                                                                    TM
+PWP 28                                                PowerPAD TSSOP - 1.2 mm max height
+4.4 x 9.7, 0.65 mm pitch                                                             SMALL OUTLINE PACKAGE
+
+
+
+
+               This image is a representation of the package family, actual package may vary.
+                             Refer to the product data sheet for package details.
+
+
+
+
+                                                                                                   4224765/B
+
+
+
+
+                                                    www.ti.com
+                                         IMPORTANT NOTICE AND DISCLAIMER
+TI PROVIDES TECHNICAL AND RELIABILITY DATA (INCLUDING DATASHEETS), DESIGN RESOURCES (INCLUDING REFERENCE
+DESIGNS), APPLICATION OR OTHER DESIGN ADVICE, WEB TOOLS, SAFETY INFORMATION, AND OTHER RESOURCES “AS IS”
+AND WITH ALL FAULTS, AND DISCLAIMS ALL WARRANTIES, EXPRESS AND IMPLIED, INCLUDING WITHOUT LIMITATION ANY
+IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT OF THIRD
+PARTY INTELLECTUAL PROPERTY RIGHTS.
+These resources are intended for skilled developers designing with TI products. You are solely responsible for (1) selecting the appropriate
+TI products for your application, (2) designing, validating and testing your application, and (3) ensuring your application meets applicable
+standards, and any other safety, security, regulatory or other requirements.
+These resources are subject to change without notice. TI grants you permission to use these resources only for development of an
+application that uses the TI products described in the resource. Other reproduction and display of these resources is prohibited. No license
+is granted to any other TI intellectual property right or to any third party intellectual property right. TI disclaims responsibility for, and you fully
+indemnify TI and its representatives against any claims, damages, costs, losses, and liabilities arising out of your use of these resources.
+TI’s products are provided subject to TI’s Terms of Sale, TI’s General Quality Guidelines, or other applicable terms available either on
+ti.com or provided in conjunction with such TI products. TI’s provision of these resources does not expand or otherwise alter TI’s applicable
+warranties or warranty disclaimers for TI products. Unless TI explicitly designates a product as custom or customer-specified, TI products
+are standard, catalog, general purpose devices.
+TI objects to and rejects any additional or different terms you may propose.
+IMPORTANT NOTICE
+
+                                                Copyright © 2025, Texas Instruments Incorporated
+                                                                Last updated 10/2025
+

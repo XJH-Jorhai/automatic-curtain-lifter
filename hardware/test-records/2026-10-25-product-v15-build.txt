@@ -1,0 +1,29 @@
+Preset CMake variables:
+
+  CMAKE_BUILD_TYPE="Release"
+  CMAKE_TOOLCHAIN_FILE:FILEPATH="[LOCAL_PATH]"
+  PRODUCT_FIRMWARE="ON"
+  PRODUCT_UP_REVERSE="0"
+  Python3_EXECUTABLE="[LOCAL_PATH]"
+  TRQ_CAPTURE_ONLY="OFF"
+  TUYA_PROGRAMMING_BRIDGE="OFF"
+  TUYA_PROTOCOL_APP="ON"
+
+-- Configuring done
+-- Generating done
+-- Build files have been written to: [LOCAL_PATH]
+[1/9] Building C object CMakeFiles/g030_mainboard.dir/tuya_sdk/protocol.c.obj
+[2/9] Building C object CMakeFiles/g030_mainboard.dir/App/product/product_app.c.obj
+[3/9] Building C object CMakeFiles/g030_mainboard.dir/App/product/product_motor.c.obj
+[4/9] Building C object CMakeFiles/g030_mainboard.dir/tuya_sdk/system.c.obj
+[5/9] Building C object CMakeFiles/g030_mainboard.dir/App/product/motion.c.obj
+[6/9] Building C object CMakeFiles/g030_mainboard.dir/App/product/bridge.c.obj
+[7/9] Building C object CMakeFiles/g030_mainboard.dir/tuya_sdk/mcu_api.c.obj
+[8/9] Building C object CMakeFiles/g030_mainboard.dir/App/product/product.c.obj
+[9/9] Linking C executable g030_mainboard.elf
+Memory region         Used Size  Region Size  %age Used
+
+             RAM:        5640 B         8 KB     68.85%
+
+           FLASH:       33020 B        64 KB     50.38%
+

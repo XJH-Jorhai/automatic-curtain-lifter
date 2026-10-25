@@ -1,0 +1,4 @@
+# Hardware tooling only; not needed for compiling firmware or pure host tests.
+pyocd==0.45.1
+pyelftools==0.32
+pyserial==3.5

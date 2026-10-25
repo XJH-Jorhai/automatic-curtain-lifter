@@ -1,0 +1,97 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "default",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/../../work/g030-mainboard-build/${presetName}",
+      "toolchainFile": "${sourceDir}/cmake/gcc-arm-none-eabi.cmake",
+      "cacheVariables": {
+        "PRODUCT_FIRMWARE": "OFF"
+      }
+    },
+    {
+      "name": "Debug",
+      "inherits": "default",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "TUYA_PROGRAMMING_BRIDGE": "OFF",
+        "TUYA_PROTOCOL_APP": "OFF"
+      }
+    },
+    {
+      "name": "TuyaBridge",
+      "inherits": "default",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "TUYA_PROGRAMMING_BRIDGE": "ON",
+        "TUYA_PROTOCOL_APP": "OFF"
+      }
+    },
+    {
+      "name": "Release",
+      "inherits": "default",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "TUYA_PROGRAMMING_BRIDGE": "OFF",
+        "TUYA_PROTOCOL_APP": "OFF"
+      }
+    },
+    {
+      "name": "Product",
+      "inherits": "default",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "TUYA_PROGRAMMING_BRIDGE": "OFF",
+        "TUYA_PROTOCOL_APP": "ON",
+        "PRODUCT_FIRMWARE": "ON",
+        "TRQ_CAPTURE_ONLY": "OFF",
+        "PRODUCT_UP_REVERSE": "0"
+      }
+    },
+    {
+      "name": "TrqCapture",
+      "inherits": "Product",
+      "cacheVariables": {
+        "TRQ_CAPTURE_ONLY": "ON",
+        "TRQ_CAPTURE_UP_REVERSE": "0"
+      }
+    },
+    {
+      "name": "TuyaApp",
+      "inherits": "default",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "TUYA_PROGRAMMING_BRIDGE": "OFF",
+        "TUYA_PROTOCOL_APP": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "TrqCapture",
+      "configurePreset": "TrqCapture"
+    },
+    {
+      "name": "Product",
+      "configurePreset": "Product"
+    },
+    {
+      "name": "TuyaBridge",
+      "configurePreset": "TuyaBridge"
+    },
+    {
+      "name": "Debug",
+      "configurePreset": "Debug"
+    },
+    {
+      "name": "Release",
+      "configurePreset": "Release"
+    },
+    {
+      "name": "TuyaApp",
+      "configurePreset": "TuyaApp"
+    }
+  ]
+}

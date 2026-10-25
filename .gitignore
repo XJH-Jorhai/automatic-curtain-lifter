@@ -1,0 +1,30 @@
+# Temporary analysis and generated artifacts
+work/*
+!work/.gitkeep
+tmp/
+
+# Third-party Tuya downloads and generated source snapshots
+# Keep the tracked inventory/porting notes; do not commit vendor binaries or
+# regenerated SDK snapshots without a separate license and security review.
+vendor/tuya/raw/
+vendor/tuya/tools/
+firmware/vendor/tuya_generated/
+
+# Local Tuya production credential bundles (authorization text and firmware)
+/tuya-production-private*/
+
+# Tool/editor files
+.vscode/
+.idea/
+*.tmp
+*.bak
+__pycache__/
+*.py[cod]
+
+# Firmware build output and secrets
+build/
+sdkconfig.old
+secrets.*
+credentials.*
+*.pem
+*.key
