@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-25",
+  "tool": "cadquery-ocp 8.0.1.1.0 / Open CASCADE",
+  "scope": "Individual STEP solids only; assembly interference not checked",
+  "results": [
+    {
+      "file": "壳子.STEP",
+      "valid": true,
+      "volume_mm3": 60781.123
+    },
+    {
+      "file": "架子.STEP",
+      "valid": true,
+      "volume_mm3": 137888.677
+    },
+    {
+      "file": "盖子.STEP",
+      "valid": true,
+      "volume_mm3": 45394.304
+    }
+  ]
+}

@@ -32,19 +32,24 @@
       "sha256": "6e471d647db50527d0c75ee5f1a55a74012ab177c73282bef0bdc7f6562b7ded"
     },
     {
+      "path": "LICENSES/GPL-3.0.txt",
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
       "path": "LICENSING.md",
-      "bytes": 1648,
-      "sha256": "823ebc799d679abf2909bcf3d89e2386552671aada6e651cf3211623f2c94612"
+      "bytes": 1688,
+      "sha256": "9391583001cefbe806b66b7369d13f0c59f3192cfef83e427f556719d52e1ac5"
     },
     {
       "path": "README.md",
-      "bytes": 3800,
-      "sha256": "ff565df42a51acbb7647df8a5704f9d661b2efa771fb0def4ad4654bd8e12e40"
+      "bytes": 3849,
+      "sha256": "e93457c0559bdbd7ab5b84eb00a634a1df9e34cb62b4af48bdab0f1bcdfb5ad4"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "bytes": 1846,
-      "sha256": "a6c3f90a6e2c5132c5e6ddaecddfbab7243d7fe32a4f097829dcfaf3e3093a7b"
+      "bytes": 1894,
+      "sha256": "3fd2fb022d302167c1942034e7466870f7e105234d11c7e53023997b80e02641"
     },
     {
       "path": "docs/01-requirements.md",
@@ -103,13 +108,13 @@
     },
     {
       "path": "docs/hardware-design.md",
-      "bytes": 5164,
-      "sha256": "d3fce11fb3112a18894814ac42b55976b4fd6e55df3c0fc24854a68241cbbf21"
+      "bytes": 5216,
+      "sha256": "802172f40a70fceed8cd8c7eab1df5936d44d5775f1f1b11865661b699746870"
     },
     {
       "path": "docs/privacy-review.md",
-      "bytes": 1862,
-      "sha256": "320f3c783e6dc280fbc2b116b0f5beecf2ebffc03759b8f30a562b531c5d3d3e"
+      "bytes": 2192,
+      "sha256": "8a0fb93af5f5db09d1a077f0f737d1acce95be99cb49da2d4290404577ea2a0c"
     },
     {
       "path": "docs/publication-draft.md",
@@ -118,8 +123,8 @@
     },
     {
       "path": "docs/release-checklist.md",
-      "bytes": 1864,
-      "sha256": "d2f1de5824cb8914d279178050b48c0ff2c0706e8ab49cef0f713c38584ac11e"
+      "bytes": 2003,
+      "sha256": "4f36a3e45cc57072b013f6365b2c89e75880a068a1ed863f52be0076aa3fdfb1"
     },
     {
       "path": "docs/software-design.md",
@@ -1622,6 +1627,11 @@
       "sha256": "ecc758dbb4d3e1827134ebc947181a2af9fdd3156c0fa04be25ec0a6d911290d"
     },
     {
+      "path": "hardware/Parametric ball chain pulley - 3147/LICENSING-NOTE.md",
+      "bytes": 983,
+      "sha256": "da5604305d5e9d28c6de4ccd1ed19a556e3ca5760308e01407dd7ce93a746997"
+    },
+    {
       "path": "hardware/Parametric ball chain pulley - 3147/README.txt",
       "bytes": 659,
       "sha256": "27bac013defc4bee8002b18a11b09075df7c2cc9928bd242c63239456c88fa86"
@@ -1688,13 +1698,18 @@
     },
     {
       "path": "hardware/mechanical/README.md",
-      "bytes": 2292,
-      "sha256": "91b2562e802c1a14e96196bb705109fa066955e801bedeb7dfe32ceec59525ee"
+      "bytes": 2416,
+      "sha256": "40af2b1b56926615fc5d6482a292ba585786d51b704d67d574a52aeada86430b"
     },
     {
       "path": "hardware/mechanical/enclosure.3mf",
       "bytes": 127943,
       "sha256": "02d1739d2e2d86050a2fd19da03b6543de8471f82fa78a4f7f96aeb10f749c24"
+    },
+    {
+      "path": "hardware/mechanical/geometry-check.json",
+      "bytes": 454,
+      "sha256": "7920a4657c0931e1638e0e8302994389d8346f92c388be39bc006af71cedc1e5"
     },
     {
       "path": "hardware/mechanical/壳子.STEP",
@@ -1713,8 +1728,8 @@
     },
     {
       "path": "hardware/release-2026-10-25/README.md",
-      "bytes": 1881,
-      "sha256": "f29032bca79d849b656afa42f5f49087df9ae315ff07a6f2e60277fac762131c"
+      "bytes": 2101,
+      "sha256": "56b7b9c2cc8bf325fec6a0bd992984c72951cb6ceb3db51332d5afc52cf61094"
     },
     {
       "path": "hardware/release-2026-10-25/curtain-lifter.epro",
@@ -1742,9 +1757,34 @@
       "sha256": "115b99574c918b082f67b230a2767008921041aa42b8f3a52ec97a2d1a3fedff"
     },
     {
+      "path": "hardware/release-2026-10-25/mainboard-schematic.pdf",
+      "bytes": 1411168,
+      "sha256": "b245c37af9ca2a01196b663dfc55335f387132deb2a4ae05fc841d8b98f26f94"
+    },
+    {
       "path": "hardware/release-2026-10-25/mainboard.enet",
       "bytes": 226062,
       "sha256": "bcc85d0b10411ddcee856994cb6b41c0137284ff81bcc397b9ba694b047eb4d8"
+    },
+    {
+      "path": "hardware/release-2026-10-25/schematic-svg/01_Power_Input.svg",
+      "bytes": 102330,
+      "sha256": "0a347a92d7247e95692564f93dc291bd918bddff52e8134259caac240f2afc91"
+    },
+    {
+      "path": "hardware/release-2026-10-25/schematic-svg/02_Stepper_Driver.svg",
+      "bytes": 106481,
+      "sha256": "13bb4b82202fbbd829de417cf96d36f9d0c229268db56d9bd489831ab3ae581f"
+    },
+    {
+      "path": "hardware/release-2026-10-25/schematic-svg/03_MCU_Control.svg",
+      "bytes": 207571,
+      "sha256": "296c013b1082ffd10d23e4542fe7add71253c172d1b77255b27bac653c34bb93"
+    },
+    {
+      "path": "hardware/release-2026-10-25/schematic-svg/04_Wireless_UI.svg",
+      "bytes": 69146,
+      "sha256": "0fa40e24d9a1532b47c767c11a594b0e21f881cf2f1f3a19c27bbfcc8a40bbab"
     },
     {
       "path": "hardware/schematic-review/BOM-review.md",

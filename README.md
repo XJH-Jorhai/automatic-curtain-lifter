@@ -2,9 +2,9 @@
 
 面向拉珠式卷帘的 12 V 智能升降控制器。采用 **STM32G030C8T6 + DRV8434A + 涂鸦 T1-3S**，配合步进电机和 9 槽珠链轮，实现本地操作、App 百分比定位及上下端点校准。
 
-项目仓库：[XJH-Jorhai/automatic-curtain-lifter](https://github.com/XJH-Jorhai/automatic-curtain-lifter)（当前为私有准备仓库）。
+项目仓库：[XJH-Jorhai/automatic-curtain-lifter](https://github.com/XJH-Jorhai/automatic-curtain-lifter)。
 
-**当前基线：2026-10-25 Product v15。** 已完成当前样机的功能验证，正在整理开源交付；电气导出及实装 BOM 已整理，机械装配和第三方依赖复现仍待补齐。当前接入平台是涂鸦，米家属于历史调研，尚未正式接入。
+**当前基线：2026-10-25 Product v15。** 本仓库公开开发版源码与设计资料。当前样机功能已验证；提供电气工程、原理图 PDF/SVG、制造文件、实装 BOM、机械 STEP 与 3MF。第三方 SDK 需自行取得，完整新账户复现尚未完成。当前接入平台是涂鸦，米家属于历史调研，尚未正式接入。
 
 ## 已实现的功能
 
